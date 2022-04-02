@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Item",
 "language": "GDScript",
 "path": "res://scripts/item.gd"
+}, {
+"base": "Item",
+"class": "Labyrinth",
+"language": "GDScript",
+"path": "res://scripts/labyrinth.gd"
 } ]
 _global_script_class_icons={
 "Bulb": "",
-"Item": ""
+"Item": "",
+"Labyrinth": ""
 }
 
 [application]

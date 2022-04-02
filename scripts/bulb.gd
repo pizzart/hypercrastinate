@@ -2,19 +2,17 @@ class_name Bulb
 extends Item
 
 var particles = preload("res://scenes/ShatterParticles.tscn")
-onready var initial_pos = position.y
 
 func _process(delta):
+	position.y += delta * 200
 	if minigaming:
-		position.y = get_global_mouse_position().y
-		if abs(position.y - initial_pos) > 400:
-			emit_signal("done")
+		if Input.is_action_pressed("start_minigame"):
+			position.y = clamp(get_global_mouse_position().y, -540, 540)
+	if position.y > 550:
+		queue_free()
 
-func start_minigame():
-	.start_minigame()
-
-func end_minigame():
-	var inst = particles.instance()
-	inst.position = position
-	get_parent().add_child(inst)
-	.end_minigame()
+func _on_input(_viewport, event, _shape_index):
+	if event.is_action_pressed("start_minigame"):
+		minigaming = true
+	if event.is_action_released("start_minigame"):
+		minigaming = false
