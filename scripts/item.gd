@@ -8,6 +8,7 @@ export var score: int = 10
 export var time_left: float = 10
 export var text: String
 var minigaming: bool
+var notif = preload("res://scenes/DisappearText.tscn")
 
 func _ready():
 	connect("input_event", self, "_on_input")
@@ -30,10 +31,10 @@ func start_minigame():
 
 func end_minigame():
 	Global.score += score
-	var label = Label.new()
-	label.text = text
-	label.rect_position = position
-	get_parent().add_child(label)
+	var notif_inst = notif.instance()
+	notif_inst.get_node("DisappearText").text = text
+	get_parent().add_child(notif_inst)
+	notif_inst.position = position + Vector2(-350, 0)
 	queue_free()
 
 func _on_input(_viewport, event, _shape_index):
