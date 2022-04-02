@@ -21,7 +21,7 @@ text = "ill do it later"
 current = true
 
 [node name="BG" type="Sprite" parent="."]
-position = Vector2( 998, 551 )
+position = Vector2( 1014, 562 )
 z_index = -1
 texture = ExtResource( 4 )
 
