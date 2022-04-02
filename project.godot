@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/bulb.gd"
 }, {
-"base": "StaticBody2D",
+"base": "Area2D",
 "class": "Item",
 "language": "GDScript",
 "path": "res://scripts/item.gd"

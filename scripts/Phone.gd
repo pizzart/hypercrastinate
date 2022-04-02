@@ -3,6 +3,7 @@ extends Item
 var size = 0
 var grow_mult = 0.1
 var MAXSIZE = 1
+var click_reduce = 0.2
 
 func _ready():
 	pass
@@ -14,3 +15,7 @@ func _process(delta):
 	if ( size > MAXSIZE ):
 		end_minigame()
 
+func _on_Phone_input_event(viewport, event, shape_idx):
+	if event.is_action_pressed("start_minigame"):
+		if (size > click_reduce):
+			size -= click_reduce

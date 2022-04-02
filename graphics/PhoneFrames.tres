@@ -33,4 +33,9 @@ animations = [ {
 "loop": false,
 "name": "appear",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 9 ), ExtResource( 20 ), ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "disappear",
+"speed": 5.0
 } ]

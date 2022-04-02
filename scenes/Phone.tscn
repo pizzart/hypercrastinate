@@ -1,12 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://graphics/PhoneFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/Phone.gd" type="Script" id=2]
 
-[node name="Phone" type="StaticBody2D"]
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="Phone" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="BG" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.2, 0.2 )
+modulate = Color( 0, 0, 0, 1 )
 frames = ExtResource( 1 )
-animation = "appear"
+animation = "disappear"
+frame = 2
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 5, 5 )
+shape = SubResource( 1 )
+
+[connection signal="input_event" from="." to="." method="_on_Phone_input_event"]

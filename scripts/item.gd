@@ -1,5 +1,5 @@
 class_name Item
-extends StaticBody2D
+extends Area2D
 
 signal done
 export var collider: Shape2D
@@ -24,8 +24,17 @@ func _ready():
 	spr.playing = true
 	spr.frames = load(item_anim)
 	add_child(spr)
+
 	bg_anim.frame = 0
 	bg_anim.playing = true
+
+	bg_anim.animation = "appear"
+	bg_anim.connect("animation_finished", self, "next_anim")
+	bg_anim.modulate = Color.black
+
+func next_anim():
+	if bg_anim.animation != "default":
+		bg_anim.animation = "default"
 
 func _process(delta):
 	pass
