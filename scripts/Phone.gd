@@ -3,7 +3,7 @@ extends Item
 var size = 0
 var grow_mult = 0.1
 var MAXSIZE = 1
-var click_reduce = 0.2
+var click_reduce = 0.1
 
 func _ready():
 	pass

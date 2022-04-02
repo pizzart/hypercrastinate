@@ -43,6 +43,7 @@ text = "ill die"
 
 [node name="Normal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+volume_db = -36.426
 autoplay = true
 
 [node name="Minigame" type="AudioStreamPlayer" parent="."]

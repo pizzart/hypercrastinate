@@ -11,6 +11,7 @@ func add_item(itemname, pos):
 	new_item.texts = Global.items[itemname]["texts"]
 	new_item.item_anim = Global.items[itemname]["icon"]
 	new_item.position = pos
+	# new_item.anima
 	add_child(new_item)
 
 func _ready():

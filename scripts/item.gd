@@ -12,6 +12,7 @@ var max_score
 var minigaming: bool
 var notif = preload("res://scenes/DisappearText.tscn")
 var col = CollisionShape2D.new()
+var dying = false
 
 onready var spr = AnimatedSprite.new()
 onready var bg_anim = get_node("BG")
@@ -26,6 +27,14 @@ func _ready():
 	spr.frames = load(item_anim)
 	add_child(spr)
 
+	if not bg_anim == null:
+		bg_anim.frame = 0
+		bg_anim.playing = true
+
+		bg_anim.animation = "appear"
+		bg_anim.connect("animation_finished", self, "next_anim")
+		bg_anim.modulate = Color.black
+
 func next_anim():
 	if bg_anim.animation != "default":
 		bg_anim.animation = "default"
@@ -38,6 +47,7 @@ func _process(delta):
 	# 		queue_free()
 
 func _physics_process(delta): 
+	return
 	if (score > max_score):
 		pass
 
