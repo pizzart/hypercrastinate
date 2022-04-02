@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://misc/Theme.tres" type="Theme" id=1]
+
+[node name="Interface" type="Control"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="Label" type="Label" parent="."]
+margin_left = 207.0
+margin_top = 133.0
+margin_right = 624.0
+margin_bottom = 165.0
+theme = ExtResource( 1 )
+text = "asdASDASDASDASDASD"
