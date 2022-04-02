@@ -13,24 +13,27 @@ var amount = 13
 var selected = []
 
 func _draw():
-	if minigaming:
-		var correlate = []
-		for idx in selected:
-			var cor = preset[((idx - 1) - ((idx - 1) % preset[0].size()) - 1) / 4][(idx - 1) % preset[0].size()]
-			if cor == 0:
-				correlate.append(Vector2(((idx - 1) - ((idx - 1) % preset[0].size()) - 1) / 4, (idx - 1) % preset[0].size()))
-		for y in range(preset.size()):
-			for x in range(preset[y].size()):
-				var col = Color.white
-				if preset[y][x] == 1:
-					col = Color.black
-				if preset[y][x] == 2:
-					col = Color.red
-				if preset[y][x] == 3:
-					col = Color.green
-				if Vector2(y, x) in correlate:
-					col = Color.blue
-				draw_circle(Vector2(x * size, y * size), size / 2, col)
+	var correlate = []
+	for idx in selected:
+		var cor = preset[((idx - 1) - ((idx - 1) % preset[0].size()) - 1) / 4][(idx - 1) % preset[0].size()]
+		if cor == 0:
+			correlate.append(Vector2(((idx - 1) - ((idx - 1) % preset[0].size()) - 1) / 4, (idx - 1) % preset[0].size()))
+	for y in range(preset.size()):
+		for x in range(preset[y].size()):
+			var col = Color.white
+			if preset[y][x] == 1:
+				col = Color.black
+			if preset[y][x] == 2:
+				col = Color.red
+			if preset[y][x] == 3:
+				col = Color.green
+			if Vector2(y, x) in correlate:
+				col = Color.blue
+			if minigaming:
+				col.a = 1
+			else:
+				col.a = 0.5
+			draw_circle(Vector2(x * size, y * size), size / 2, col)
 
 func _process(delta):
 	pass
