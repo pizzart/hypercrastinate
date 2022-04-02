@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/bulb.gd" type="Script" id=1]
 [ext_resource path="res://graphics/bulb.png" type="Texture" id=2]
+[ext_resource path="res://misc/Theme.tres" type="Theme" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80, 80 )
@@ -14,3 +15,19 @@ script = ExtResource( 1 )
 collider = SubResource( 1 )
 sprite = ExtResource( 2 )
 text = "ill do it later"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Interface" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Interface"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Interface/Control"]
+margin_right = 40.0
+margin_bottom = 14.0
+theme = ExtResource( 3 )
+text = "asdasdasdasdasdasd"
