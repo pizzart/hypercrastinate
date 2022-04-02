@@ -8,6 +8,7 @@ export var score: int = 10
 export var time_left: float = 10
 export var text: String
 var texts = []
+var max_score
 var minigaming: bool
 var notif = preload("res://scenes/DisappearText.tscn")
 var col = CollisionShape2D.new()
@@ -42,6 +43,11 @@ func _process(delta):
 	# 	time_left -= delta
 	# 	if time_left <= 0:
 	# 		queue_free()
+
+func _physics_process(delta): 
+	if (score > max_score):
+		pass
+
 
 func start_minigame():
 	minigaming = true

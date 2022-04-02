@@ -11,9 +11,9 @@ func add_item(itemname):
 	print(Global.items[itemname])
 	new_item.texts = Global.items[itemname]["texts"]
 	new_item.item_anim = Global.items[itemname]["icon"]
+	new_item.max_score = Global.items[itemname]["win_score"]
 	add_child(new_item)
 	pass
 
 func _ready():
 	add_item("gotyz")
-	pass # Replace with function body.
