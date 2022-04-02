@@ -1,16 +1,24 @@
 class_name Item
 extends StaticBody2D
 
+signal done
 export var collider: Shape2D
-export(ImageTexture) var sprite
-var time_left: float = 10
+export(StreamTexture) var sprite
+export var score: int = 10
+export var time_left: float = 10
+export var text: String
+var minigaming: bool
 
 func _ready():
 	connect("input_event", self, "_on_input")
+	connect("done", self, "end_minigame")
 	input_pickable = true
 	var col = CollisionShape2D.new()
 	col.shape = collider
 	add_child(col)
+	var spr = Sprite.new()
+	spr.texture = sprite
+	add_child(spr)
 
 func _process(delta):
 	time_left -= delta
@@ -18,7 +26,15 @@ func _process(delta):
 		queue_free()
 
 func start_minigame():
-	print("wahoo")
+	minigaming = true
+
+func end_minigame():
+	Global.score += score
+	var label = Label.new()
+	label.text = text
+	label.rect_position = position
+	get_parent().add_child(label)
+	queue_free()
 
 func _on_input(_viewport, event, _shape_index):
 	if event.is_action_pressed("start_minigame"):

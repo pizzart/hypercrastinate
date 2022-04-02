@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scripts/item.gd" type="Script" id=1]
+[ext_resource path="res://scripts/bulb.gd" type="Script" id=1]
+[ext_resource path="res://graphics/bulb.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 20 )
+extents = Vector2( 80, 80 )
 
 [node name="Game" type="Node2D"]
 
-[node name="Item" type="StaticBody2D" parent="."]
-position = Vector2( 289, 137 )
+[node name="Bulb" type="StaticBody2D" parent="."]
+position = Vector2( 683, 312 )
 script = ExtResource( 1 )
 collider = SubResource( 1 )
+sprite = ExtResource( 2 )
+text = "ill do it later"

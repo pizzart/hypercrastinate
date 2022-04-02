@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Item",
+"class": "Bulb",
+"language": "GDScript",
+"path": "res://scripts/bulb.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Item",
 "language": "GDScript",
 "path": "res://scripts/item.gd"
 } ]
 _global_script_class_icons={
+"Bulb": "",
 "Item": ""
 }
 
@@ -22,6 +28,10 @@ _global_script_class_icons={
 
 config/name="LD50"
 run/main_scene="res://scenes/Game.tscn"
+
+[autoload]
+
+Global="*res://scripts/global.gd"
 
 [display]
 
