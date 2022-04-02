@@ -40,8 +40,8 @@ func start_minigame():
 	minigaming = true
 
 func end_minigame():
-	Global.emit_signal("score_updated")
 	Global.score += score
+	Global.emit_signal("score_updated")
 	var notif_inst = notif.instance()
 	notif_inst.get_node("DisappearText").text = text
 	get_parent().add_child(notif_inst)

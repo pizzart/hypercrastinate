@@ -2,7 +2,7 @@
 
 [ext_resource path="res://misc/Theme.tres" type="Theme" id=1]
 [ext_resource path="res://misc/HussarMilosc-lO6e.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://scripts/Menu.gd" type="Script" id=3]
+[ext_resource path="res://scripts/menu.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=2]
 size = 99
