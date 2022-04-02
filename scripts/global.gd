@@ -4,10 +4,10 @@ var score: int
 
 var items = {
 	"gotyz": {
-		"icon": "res://graphics/PhoneFrames.tres",
+		"icon": "res://graphics/BulbFrames.tres",
 		"max_attempts": 10,
 		"win_achievement": "work",
-		"texts:": [
+		"texts": [
 			"I'll do it tomorrow",
 			"idc",
 			"I'll watch anime instead"

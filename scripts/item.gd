@@ -3,7 +3,7 @@ extends StaticBody2D
 
 signal done
 export var collider: Shape2D
-export(SpriteFrames) var sprite
+export(SpriteFrames) var item_anim
 export var score: int = 10
 export var time_left: float = 10
 export var text: String
@@ -12,21 +12,27 @@ var minigaming: bool
 var notif = preload("res://scenes/DisappearText.tscn")
 var col = CollisionShape2D.new()
 
+onready var spr = AnimatedSprite.new()
+onready var bg_anim = get_node("BG")
+
 func _ready():
 	connect("input_event", self, "_on_input")
 	connect("done", self, "end_minigame")
 	input_pickable = true
 	col.shape = collider
 	add_child(col)
-	var spr = Sprite.new()
-	spr.texture = sprite
+	spr.playing = true
+	spr.frames = load(item_anim)
 	add_child(spr)
+	bg_anim.frame = 0
+	bg_anim.playing = true
 
 func _process(delta):
-	if not minigaming:
-		time_left -= delta
-		if time_left <= 0:
-			queue_free()
+	pass
+	# if not minigaming:
+	# 	time_left -= delta
+	# 	if time_left <= 0:
+	# 		queue_free()
 
 func start_minigame():
 	minigaming = true

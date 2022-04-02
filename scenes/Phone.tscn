@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://graphics/PhoneFrames.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://scripts/Phone.gd" type="Script" id=2]
 
-[node name="Phone" type="Node2D"]
+[node name="Phone" type="StaticBody2D"]
+script = ExtResource( 2 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="BG" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.2, 0.2 )
 frames = ExtResource( 1 )
 animation = "appear"
-frame = 9
-playing = true
