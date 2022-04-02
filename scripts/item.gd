@@ -62,7 +62,10 @@ func start_minigame():
 func rand_notif():
 	Global.score += collected_score 
 	collected_score = 0
-	notify(texts[RNG.randi_range(0, texts.size()-1)])
+	if texts.size() == 0:
+		notify(text)
+	else:
+		notify(texts[RNG.randi_range(0, texts.size()-1)])
 
 func notify(thistext):
 	if is_instance_valid(global_notify_inst):
@@ -76,9 +79,11 @@ func notify(thistext):
 func end_minigame():
 	Global.score += score
 	Global.emit_signal("score_updated")
-	notify(text)
+	# notify(text)
+	rand_notif()
 	if not bg_anim == null:
 		bg_anim.animation = "disappear"
+		spr.animation = "disappear"
 		dying = true
 	else:
 		queue_free()

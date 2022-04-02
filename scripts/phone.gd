@@ -6,7 +6,7 @@ var grow_mult = 0.1
 var click_reduce = 0.15
 
 func _ready():
-	size = click_reduce
+	size = 0.5
 
 func _process(delta):
 	size += delta * grow_mult
@@ -14,13 +14,11 @@ func _process(delta):
 
 	if size > MAXSIZE:
 		end_minigame()
-
 	if (size < click_reduce):
-		rand_notif()
+		end_minigame()
 
 	if (size > 0.8):
 		modulate = Color.red
-
 	if (size < 0.7):
 		modulate = Color.white
 
