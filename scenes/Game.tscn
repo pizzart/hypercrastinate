@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/bulb.gd" type="Script" id=1]
 [ext_resource path="res://graphics/bulb.png" type="Texture" id=2]
-[ext_resource path="res://misc/Theme.tres" type="Theme" id=3]
+[ext_resource path="res://scenes/Interface.tscn" type="PackedScene" id=3]
 [ext_resource path="res://graphics/bg.jpg" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -20,20 +20,9 @@ text = "ill do it later"
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
-[node name="Interface" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="Interface"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="Interface/Control"]
-margin_right = 40.0
-margin_bottom = 14.0
-theme = ExtResource( 3 )
-text = "asdasdasdasdasdasd"
-
 [node name="BG" type="Sprite" parent="."]
 position = Vector2( 998, 551 )
 z_index = -1
 texture = ExtResource( 4 )
+
+[node name="Interface" parent="." instance=ExtResource( 3 )]
