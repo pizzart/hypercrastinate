@@ -3,10 +3,10 @@ extends Item
 const MAXSIZE = 1
 var size = 0
 var grow_mult = 0.1
-var click_reduce = 0.1
+var click_reduce = 0.15
 
 func _ready():
-	pass
+	size = click_reduce
 
 func _process(delta):
 	size += delta * grow_mult

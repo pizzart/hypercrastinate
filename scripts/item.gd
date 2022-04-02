@@ -7,6 +7,7 @@ export var item_anim: String
 export var score: int = 10
 export var time_left: float = 10
 export var text: String
+var collected_score = 0 # Adds to global during lifetime of item
 var texts = []
 var max_score
 var minigaming: bool
