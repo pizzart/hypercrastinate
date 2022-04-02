@@ -1,5 +1,6 @@
 extends Node
 
+signal score_updated
 var score: int
 
 var items = {

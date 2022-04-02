@@ -14,5 +14,4 @@ func add_item(itemname, pos):
 	add_child(new_item)
 
 func _ready():
-	add_item("gotyz", Vector2())
-	add_item("labyrinth", Vector2(200, 0))
+	add_item("gotyz", Vector2(-400, 0))

@@ -3,7 +3,7 @@ extends Area2D
 
 signal done
 export var collider: Shape2D
-export(SpriteFrames) var item_anim
+export var item_anim: String
 export var score: int = 10
 export var time_left: float = 10
 export var text: String
@@ -25,13 +25,6 @@ func _ready():
 	spr.frames = load(item_anim)
 	add_child(spr)
 
-	bg_anim.frame = 0
-	bg_anim.playing = true
-
-	bg_anim.animation = "appear"
-	bg_anim.connect("animation_finished", self, "next_anim")
-	bg_anim.modulate = Color.black
-
 func next_anim():
 	if bg_anim.animation != "default":
 		bg_anim.animation = "default"
@@ -47,6 +40,7 @@ func start_minigame():
 	minigaming = true
 
 func end_minigame():
+	Global.emit_signal("score_updated")
 	Global.score += score
 	var notif_inst = notif.instance()
 	notif_inst.get_node("DisappearText").text = text
