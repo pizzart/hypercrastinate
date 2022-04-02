@@ -16,9 +16,16 @@ func _process(delta):
 		end_minigame()
 
 	if (size < click_reduce):
-		notify(texts[0])
+		rand_notif()
+
+	if (size > 0.8):
+		modulate = Color.red
+
+	if (size < 0.7):
+		modulate = Color.white
 
 func _on_Phone_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("start_minigame"):
 		if size > click_reduce:
 			size -= click_reduce
+		collected_score += 1
