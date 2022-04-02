@@ -1,7 +1,7 @@
 class_name Labyrinth
 extends Item
 
-var size = 150
+var size = 100
 var preset = [
 	[2,0,0,0,1],
 	[1,1,1,0,0],
@@ -61,7 +61,11 @@ func _on_input(_viewport, event, shape_index):
 	if minigaming:
 		if event is InputEventMouseMotion and Input.is_action_pressed("start_minigame"):
 			if not shape_index in selected:
-				selected.append(shape_index)
+				if selected.size() == 0:
+					if shape_index == 1:
+						selected.append(shape_index)
+				else:
+					selected.append(shape_index)
 
 		if event.is_action_released("start_minigame"):
 			selected.clear()
@@ -70,8 +74,11 @@ func _on_input(_viewport, event, shape_index):
 			var correlate = []
 			for idx in selected:
 				correlate.append(preset[((idx - 1) - ((idx - 1) % preset[0].size()) - 1) / 4][(idx - 1) % preset[0].size()])
-			if correlate[0] == 2 and correlate[-1] == 3 and correlate.count(0) >= amount:
-				emit_signal("done")
+			if correlate.count(1) == 0:
+				if correlate[0] == 2 and correlate[-1] == 3 and correlate.count(0) >= amount:
+					emit_signal("done")
+			else:
+				selected.clear()
 
 		update()
 	._on_input(_viewport, event, shape_index)
