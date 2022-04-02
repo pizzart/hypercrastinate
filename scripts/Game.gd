@@ -6,14 +6,12 @@ var phone = preload("res://scenes/Phone.tscn")
 func show_achievement():
 	pass
 
-func add_item(itemname):
+func add_item(itemname, pos):
 	var new_item = phone.instance()
-	print(Global.items[itemname])
 	new_item.texts = Global.items[itemname]["texts"]
 	new_item.item_anim = Global.items[itemname]["icon"]
-	new_item.max_score = Global.items[itemname]["win_score"]
+	new_item.position = pos
 	add_child(new_item)
-	pass
 
 func _ready():
-	add_item("gotyz")
+	add_item("gotyz", Vector2(-400, 0))

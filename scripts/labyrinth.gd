@@ -39,7 +39,14 @@ func start_minigame():
 			col.shape.extents.y = size / 2
 			col.position = Vector2(x * size, y * size)
 			add_child(col)
+	get_parent().get_node("Normal").volume_db = -80
+	get_parent().get_node("Minigame").volume_db = 0
 	.start_minigame()
+
+func end_minigame():
+	get_parent().get_node("Normal").volume_db = 0
+	get_parent().get_node("Minigame").volume_db = -80
+	.end_minigame()
 
 func _on_input(_viewport, event, shape_index):
 	if minigaming:

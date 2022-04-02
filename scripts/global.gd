@@ -1,5 +1,6 @@
 extends Node
 
+signal score_updated
 var score: int
 
 var items = {
@@ -12,8 +13,18 @@ var items = {
 			"idc",
 			"I'll watch anime instead"
 			],
-		}
-	}
+	},
+	"labyrinth": {
+		"icon": "res://graphics/PhoneFrames.tres",
+		"max_attempts": 10,
+		"win_achievement": "work",
+		"texts": [
+			"I'll do it tomorrow",
+			"stupid",
+			"I'll die instead"
+			],
+	},
+}
 
 var achievements = {
 	"work": {
