@@ -11,6 +11,7 @@ var texts = []
 var max_score
 var minigaming: bool
 var notif = preload("res://scenes/DisappearText.tscn")
+var global_notify_inst
 var col = CollisionShape2D.new()
 var dying = false
 
@@ -51,17 +52,22 @@ func _physics_process(delta):
 	if (score > max_score):
 		pass
 
-
 func start_minigame():
 	minigaming = true
 
-func end_minigame():
-	Global.emit_signal("score_updated")
-	Global.score += score
+func notify(thistext):
+	if is_instance_valid(global_notify_inst):
+		return
 	var notif_inst = notif.instance()
-	notif_inst.get_node("DisappearText").text = text
+	notif_inst.get_node("DisappearText").text = thistext
 	get_parent().add_child(notif_inst)
 	notif_inst.position = position + Vector2(-350, 0)
+	global_notify_inst = notif_inst
+
+func end_minigame():
+	Global.score += score
+	Global.emit_signal("score_updated")
+	notify(text)
 	queue_free()
 
 func _on_input(_viewport, event, _shape_index):
