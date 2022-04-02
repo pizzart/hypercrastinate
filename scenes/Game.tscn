@@ -48,7 +48,7 @@ text = "ill die"
 position = Vector2( -229, 331 )
 script = ExtResource( 8 )
 collider = SubResource( 3 )
-item_anim = "res://graphics/BulbFrames.tres"
+item_anim = "res://graphics/BookFrames.tres"
 score = 20
 text = "ill piss"
 
