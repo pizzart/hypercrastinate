@@ -2,8 +2,11 @@
 
 [ext_resource path="res://graphics/PhoneFrames.tres" type="SpriteFrames" id=1]
 
-[node name="test" type="Node2D"]
+[node name="Phone" type="Node2D"]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
 frames = ExtResource( 1 )
+animation = "appear"
+frame = 9
 playing = true

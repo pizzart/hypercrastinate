@@ -1,0 +1,21 @@
+[gd_resource type="SpriteFrames" load_steps=12 format=2]
+
+[ext_resource path="res://renders/bulb/bulb0014.png" type="Texture" id=1]
+[ext_resource path="res://renders/bulb/bulb0015.png" type="Texture" id=2]
+[ext_resource path="res://renders/bulb/bulb0017.png" type="Texture" id=3]
+[ext_resource path="res://renders/bulb/bulb0016.png" type="Texture" id=4]
+[ext_resource path="res://renders/bulb/bulb0019.png" type="Texture" id=5]
+[ext_resource path="res://renders/bulb/bulb0013.png" type="Texture" id=6]
+[ext_resource path="res://renders/bulb/bulb0011.png" type="Texture" id=7]
+[ext_resource path="res://renders/bulb/bulb0018.png" type="Texture" id=8]
+[ext_resource path="res://renders/bulb/bulb0020.png" type="Texture" id=9]
+[ext_resource path="res://renders/bulb/bulb0010.png" type="Texture" id=10]
+[ext_resource path="res://renders/bulb/bulb0012.png" type="Texture" id=11]
+
+[resource]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]

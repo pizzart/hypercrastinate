@@ -50,6 +50,11 @@ window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
+[global]
+
+fps=false
+default=false
+
 [input]
 
 start_minigame={

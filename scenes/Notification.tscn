@@ -62,6 +62,7 @@ bbcode_text = "[shake rate=10 level=3] Cool
 [/shake] "
 text = " Cool
  "
+scroll_active = false
 
 [node name="Text" type="RichTextLabel" parent="HBox/VBox"]
 margin_top = 42.0
@@ -73,6 +74,7 @@ custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
 bbcode_text = "[shake rate=10 level=3]asd[/shake] "
 text = "asd "
+scroll_active = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

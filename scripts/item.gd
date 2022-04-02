@@ -3,10 +3,11 @@ extends StaticBody2D
 
 signal done
 export var collider: Shape2D
-export(StreamTexture) var sprite
+export(SpriteFrames) var sprite
 export var score: int = 10
 export var time_left: float = 10
 export var text: String
+var texts = []
 var minigaming: bool
 var notif = preload("res://scenes/DisappearText.tscn")
 var col = CollisionShape2D.new()
