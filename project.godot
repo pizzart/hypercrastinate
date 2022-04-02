@@ -23,18 +23,24 @@ _global_script_classes=[ {
 "class": "Labyrinth",
 "language": "GDScript",
 "path": "res://scripts/labyrinth.gd"
+}, {
+"base": "Item",
+"class": "Throw",
+"language": "GDScript",
+"path": "res://scripts/throw.gd"
 } ]
 _global_script_class_icons={
 "Bulb": "",
 "Item": "",
-"Labyrinth": ""
+"Labyrinth": "",
+"Throw": ""
 }
 
 [application]
 
 config/name="LD50"
 run/main_scene="res://scenes/Game.tscn"
-config/icon="res://icon.png"
+config/icon="res://renders/phone/phone0009.png"
 
 [autoload]
 
