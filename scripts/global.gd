@@ -6,7 +6,7 @@ var score: int
 var items = {
 	"gotyz": {
 		"icon": "res://graphics/BulbFrames.tres",
-		"max_attempts": 10,
+		"win_score": 10,
 		"win_achievement": "work",
 		"texts": [
 			"I'll do it tomorrow",
