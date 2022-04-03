@@ -26,4 +26,4 @@ func _on_Phone_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("start_minigame"):
 		if size > click_reduce:
 			size -= click_reduce
-		collected_score += 1
+		collected_score += 0

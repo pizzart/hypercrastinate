@@ -42,7 +42,7 @@ current = true
 [node name="BG" type="AnimatedSprite" parent="."]
 z_index = -1
 frames = ExtResource( 4 )
-frame = 9
+frame = 5
 playing = true
 
 [node name="Fire" type="Sprite" parent="."]

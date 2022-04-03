@@ -5,6 +5,8 @@ var time_next: float = 5
 # var item = preload("res://scripts/item.gd")
 var phone = preload("res://scenes/Phone.tscn")
 var RNG = RandomNumberGenerator.new()
+onready var bottom_notification = preload("res://scenes/Notification.tscn")
+
 enum Types {
 	PHONE,
 	BULB,
@@ -41,8 +43,10 @@ func get_type():
 			pos = Vector2(RNG.randf_range(-800, 800), RNG.randf_range(-400, 400))
 	return [type, pos]
 
-func show_achievement():
-	pass
+func show_achievement(title: String, text: String):
+	var new_achiv = bottom_notification.instance()
+	new_achiv.init(title, text)
+	get_node("Interface/Interface/Achievements").add_child(new_achiv)
 
 func add_item(itemname, type, pos):
 	var new_item
