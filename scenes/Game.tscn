@@ -50,13 +50,11 @@ script = ExtResource( 5 )
 [node name="BG" type="AnimatedSprite" parent="."]
 z_index = -1
 frames = ExtResource( 4 )
-frame = 9
 playing = true
 
 [node name="Fire" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 502 )
 frames = SubResource( 5 )
-frame = 3
 playing = true
 
 [node name="Basket" parent="." instance=ExtResource( 8 )]
