@@ -15,6 +15,7 @@ var notif = preload("res://scenes/DisappearText.tscn")
 var global_notify_inst
 var col = CollisionShape2D.new()
 var dying = false
+var type: String
 var RNG = RandomNumberGenerator.new()
 
 onready var spr = AnimatedSprite.new()
@@ -80,6 +81,7 @@ func end_minigame():
 	Global.score += score
 	Global.emit_signal("score_updated")
 	# notify(text)
+	get_parent().increase_type(type)
 	rand_notif()
 	if not bg_anim == null:
 		bg_anim.animation = "disappear"
