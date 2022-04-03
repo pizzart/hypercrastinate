@@ -7,6 +7,8 @@ var flying: bool
 var velocity: Vector2
 var basket = preload("res://scenes/Basket.tscn")
 var basket_inst
+var fake
+var aiming: bool
 var line = Line2D.new()
 onready var init_pos = position
 
@@ -15,11 +17,28 @@ func _ready():
 	line.width = 5
 	line.antialiased = true
 	add_child(line)
+	fake = Sprite.new()
+	fake.scale *= 1.5
+	fake.rotation_degrees = -52
+	fake.modulate.a = 0.3
+	fake.texture = load("res://graphics/basket.png")
+	fake.position.x += 500
+	add_child(fake)
 
 func _process(delta):
 	time_left -= delta
 	if time_left <= 0:
 		queue_free()
+
+	if aiming:	
+		col.scale = Vector2(4, 4)
+		update_trajectory(0.1)
+		if Input.is_action_just_released("start_minigame"):
+			col.scale = Vector2(0.7, 0.7)
+			flying = true
+			aiming = false
+			velocity = to_local(get_global_mouse_position()).clamped(100) * ITEM_VELOCITY
+			line.clear_points()
 
 	if flying:
 		velocity.y += 10 * delta * 10
@@ -35,6 +54,7 @@ func start_minigame():
 	get_parent().get_node("Normal").volume_db = -80
 	get_parent().get_node("Minigame").volume_db = 0
 
+	fake.queue_free()
 	basket_inst = basket.instance()
 	get_parent().add_child(basket_inst)
 	basket_inst.position = position + Vector2(500, 0)
@@ -44,6 +64,7 @@ func start_minigame():
 func end_minigame():
 	get_parent().get_node("Normal").volume_db = 0
 	get_parent().get_node("Minigame").volume_db = -80
+	basket_inst.queue_free()
 	.end_minigame()
 
 func update_trajectory(delta):
@@ -59,11 +80,5 @@ func update_trajectory(delta):
 
 func _on_input(_v, event, _i):
 	if minigaming and not flying:
-		col.scale = Vector2(4, 4)
-		update_trajectory(0.1)
-		if event.is_action_released("start_minigame"):
-			col.scale = Vector2(1, 1)
-			flying = true
-			velocity = to_local(get_global_mouse_position()).clamped(100) * ITEM_VELOCITY
-			line.clear_points()
+		aiming = true
 	._on_input(_v, event, _i)

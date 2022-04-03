@@ -4,13 +4,13 @@
 [ext_resource path="res://graphics/basket.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 80 )
+extents = Vector2( 10, 68.8015 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 65, 40 )
 
 [node name="Basket" type="Node2D"]
-rotation = -0.905445
+rotation = -0.907571
 scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 1 )
 
@@ -18,7 +18,7 @@ script = ExtResource( 1 )
 position = Vector2( 0, 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -80, 0 )
+position = Vector2( -76.1699, 10.5232 )
 rotation = -0.349066
 shape = SubResource( 1 )
 
