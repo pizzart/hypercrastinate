@@ -1,40 +1,26 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scripts/basket.gd" type="Script" id=1]
-[ext_resource path="res://graphics/basket.png" type="Texture" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 68.8015 )
+[ext_resource path="res://graphics/BasketFrames.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://scripts/basket.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 65, 40 )
 
 [node name="Basket" type="Node2D"]
-rotation = -0.907571
-scale = Vector2( 1.5, 1.5 )
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 0, 13 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -76.1699, 10.5232 )
-rotation = -0.349066
-shape = SubResource( 1 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 70, 0 )
-rotation = 0.174533
-shape = SubResource( 1 )
-
-[node name="Area" type="Area2D" parent="."]
+[node name="BasketArea" type="Area2D" parent="."]
 position = Vector2( -2.064, 30 )
 scale = Vector2( 0.918, 1.508 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasketArea"]
 shape = SubResource( 2 )
+disabled = true
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 1 )
+animation = "disappear"
+frame = 7
+playing = true
 
-[connection signal="area_entered" from="Area" to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="Sprite" to="." method="_on_animation_finished"]

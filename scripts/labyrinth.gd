@@ -1,59 +1,43 @@
 class_name Labyrinth
 extends Item
 
+var maze
 var size = 100
-var preset = [
-	[2,0,0,0,1],
-	[1,1,1,0,0],
-	[0,0,0,1,0],
-	[0,1,0,0,0],
-	[3,1,1,0,0],
-]
-var amount = 13
-var selected = []
+var avoid = Vector2()
+var grabbing: bool
 
-func _draw():
-	var correlate = []
-	for idx in selected:
-		var cor = preset[((idx - 1) - ((idx - 1) % preset[0].size()) - 1) / 4][(idx - 1) % preset[0].size()]
-		if cor == 0:
-			correlate.append(Vector2(((idx - 1) - ((idx - 1) % preset[0].size()) - 1) / 4, (idx - 1) % preset[0].size()))
-	for y in range(preset.size()):
-		for x in range(preset[y].size()):
-			var col = Color.white
-			if preset[y][x] == 1:
-				col = Color.red
-			if preset[y][x] == 2:
-				col = Color.teal
-			if preset[y][x] == 3:
-				col = Color.green
-			if Vector2(y, x) in correlate:
-				col = Color.blue
-			if minigaming:
-				col.a = 1
-			else:
-				col.a = 0.5
-			draw_arc(Vector2(x * size, y * size), size / 2, 0, PI * 2, 15, col, 2, true)
+func _ready():
+	connect("area_shape_entered", self, "_on_area_shape_entered")
+	connect("area_shape_exited", self, "_on_area_shape_exited")
 
 func _process(delta):
-	pass
-	#if minigaming:
-		#position = get_global_mouse_position()
+	if grabbing:
+		position = get_global_mouse_position()
+		if avoid != Vector2():
+			if abs(position.x - avoid.x) > abs(position.y - avoid.y):
+				if position.x > avoid.x:
+					position.x = clamp(position.x, avoid.x + size - 10, INF)
+				elif position.x < avoid.x:
+					position.x = clamp(position.x, -INF, avoid.x - size + 10)
+
+			else:
+				if position.y > avoid.y:
+					position.y = clamp(position.y, avoid.y + size - 10, INF)
+				elif position.y < avoid.y:
+					position.y = clamp(position.y, -INF, avoid.y - size + 10)
+
+		position.x = clamp(position.x, maze.position.x, maze.position.x + size * 4)
+		position.y = clamp(position.y, maze.position.y, maze.position.y + size * 4)
 
 func start_minigame():
-	col.disabled = true
-	for y in range(preset.size()):
-		for x in range(preset[y].size()):
-			var col = CollisionShape2D.new()
-			col.shape = collider
-			col.shape.extents.x = size / 2
-			col.shape.extents.y = size / 2
-			col.position = Vector2(x * size, y * size)
-			add_child(col)
 	get_parent().get_node("Normal").volume_db = -80
 	get_parent().get_node("Minigame").volume_db = 0
+	maze = MazeMain.new()
+	maze.size = size
+	get_parent().add_child(maze)
+	maze.position = position
+	scale = Vector2(0.5, 0.5)
 	.start_minigame()
-	update()
 
 func end_minigame():
 	get_parent().get_node("Normal").volume_db = 0
@@ -61,27 +45,21 @@ func end_minigame():
 	.end_minigame()
 
 func _on_input(_viewport, event, shape_index):
-	if minigaming:
-		if event is InputEventMouseMotion and Input.is_action_pressed("start_minigame"):
-			if not shape_index in selected:
-				if selected.size() == 0:
-					if shape_index == 1:
-						selected.append(shape_index)
-				else:
-					selected.append(shape_index)
-
-		if event.is_action_released("start_minigame"):
-			selected.clear()
-
-		if selected.size() > 0:
-			var correlate = []
-			for idx in selected:
-				correlate.append(preset[((idx - 1) - ((idx - 1) % preset[0].size()) - 1) / 4][(idx - 1) % preset[0].size()])
-			if correlate.count(1) == 0:
-				if correlate[0] == 2 and correlate[-1] == 3 and correlate.count(0) >= amount:
-					emit_signal("done")
-			else:
-				selected.clear()
-
-		update()
+	if event.is_action_pressed("start_minigame"):
+		grabbing = true
+	if event.is_action_released("start_minigame"):
+		grabbing = false
 	._on_input(_viewport, event, shape_index)
+
+func _on_area_shape_entered(_rid, area, shape_idx, _local):
+	if area is MazeMain:
+		var shape = area.shape_owner_get_owner(shape_idx)
+		avoid = shape.global_position
+		if shape.name == "End":
+			maze.queue_free()
+			emit_signal("done")
+
+func _on_area_shape_exited(_rid, area, shape_idx, _local):
+	if area is MazeMain:
+		var shape = area.shape_owner_get_owner(shape_idx)
+		avoid = Vector2()

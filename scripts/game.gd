@@ -2,7 +2,6 @@ extends Node2D
 
 var time_elapsed: float
 var time_next: float = 5
-var added = []
 # var item = preload("res://scripts/item.gd")
 var phone = preload("res://scenes/Phone.tscn")
 var RNG = RandomNumberGenerator.new()
@@ -10,7 +9,6 @@ enum Types {
 	PHONE,
 	BULB,
 	MAZE,
-	THROW,
 }
 
 func _ready():
@@ -35,14 +33,9 @@ func get_type():
 		Types.PHONE:
 			pos = Vector2(RNG.randf_range(-900, 900), RNG.randf_range(-500, 500))
 		Types.BULB:
-			pos = Vector2(RNG.randf_range(-900, 900), RNG.randf_range(-500, 0))
+			pos = Vector2(RNG.randf_range(-900, 900), RNG.randf_range(-1000, -700))
 		Types.MAZE:
-			if type in added:
-				var new = get_type()
-				type = new[0]
-				pos = new[1]
-			else:
-				pos = Vector2(RNG.randf_range(-900, 400), RNG.randf_range(-500, 0))
+			pos = Vector2(RNG.randf_range(-900, 400), RNG.randf_range(-500, 0))
 		Types.THROW:
 			pos = Vector2(RNG.randf_range(-900, 400), RNG.randf_range(-500, 400))
 	return [type, pos]
@@ -66,9 +59,11 @@ func add_item(itemname, type, pos):
 		Types.THROW:
 			new_item = Throw.new()
 			new_item.collider = shape
+		_:
+			new_item = Bulb.new()
+			new_item.collider = shape
 	new_item.texts = Global.items[itemname]["texts"]
 	new_item.item_anim = Global.items[itemname]["icon"]
 	new_item.position = pos
 	# new_item.anima
 	add_child(new_item)
-	added.append(type)

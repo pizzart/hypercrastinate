@@ -13,10 +13,6 @@ var line = Line2D.new()
 onready var init_pos = position
 
 func _ready():
-	line.default_color = Color.teal
-	line.width = 5
-	line.antialiased = true
-	add_child(line)
 	fake = Sprite.new()
 	fake.scale *= 1.5
 	fake.rotation_degrees = -52
@@ -31,10 +27,8 @@ func _process(delta):
 		queue_free()
 
 	if aiming:	
-		col.scale = Vector2(4, 4)
 		update_trajectory(0.1)
 		if Input.is_action_just_released("start_minigame"):
-			col.scale = Vector2(0.7, 0.7)
 			flying = true
 			aiming = false
 			velocity = to_local(get_global_mouse_position()).clamped(100) * ITEM_VELOCITY
@@ -55,9 +49,15 @@ func start_minigame():
 	get_parent().get_node("Minigame").volume_db = 0
 
 	fake.queue_free()
+
 	basket_inst = basket.instance()
 	get_parent().add_child(basket_inst)
 	basket_inst.position = position + Vector2(500, 0)
+
+	line.default_color = Color.teal
+	line.width = 5
+	line.antialiased = true
+	add_child(line)
 
 	.start_minigame()
 
@@ -79,6 +79,6 @@ func update_trajectory(delta):
 			break
 
 func _on_input(_v, event, _i):
+	._on_input(_v, event, _i)
 	if minigaming and not flying:
 		aiming = true
-	._on_input(_v, event, _i)
