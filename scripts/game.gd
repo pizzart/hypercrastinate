@@ -19,6 +19,7 @@ func _ready():
 	RNG.randomize()
 	add_item("gotyz", Types.PHONE, Vector2(-400, 0))
 	add_item("book", Types.BULB, Vector2(400, 0))
+	add_item("shower", Types.BUTTONS, Vector2(0, -200))
 
 func _process(delta):
 	time_elapsed += delta
