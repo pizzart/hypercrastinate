@@ -32,21 +32,22 @@ func _process(delta):
 		add_item(Global.items.keys()[RNG.randi() % Global.items.keys().size()], type, pos)
 
 func get_type():
-	var type = RNG.randi() % Types.size()
+	var type
 	var pos
-	match type:
-		Types.PHONE:
-			pos = Vector2(RNG.randf_range(-900, 900), RNG.randf_range(-500, 500))
-		Types.BULB:
-			pos = Vector2(RNG.randf_range(-900, 900), RNG.randf_range(-1000, -700))
-		Types.MAZE:
-			pos = Vector2(RNG.randf_range(-900, 400), RNG.randf_range(-500, 0))
-		Types.BUTTONS:
-			pos = Vector2(RNG.randf_range(-800, 800), RNG.randf_range(-400, 400))
+	var chance = RNG.randf()
+	if chance < 0.35:
+		type = Types.PHONE
+		pos = Vector2(RNG.randf_range(-900, 900), RNG.randf_range(-500, 500))
+	elif chance >= 0.35 and chance < 0.7:
+		type = Types.BULB
+		pos = Vector2(RNG.randf_range(-900, 900), RNG.randf_range(-1000, -700))
+	elif chance >= 0.7 and chance < 0.9:
+		type = Types.MAZE
+		pos = Vector2(RNG.randf_range(-900, 400), RNG.randf_range(-500, 0))
+	elif chance >= 0.9 and chance <= 1:
+		type = Types.BUTTONS
+		pos = Vector2(RNG.randf_range(-800, 800), RNG.randf_range(-400, 400))
 	return [type, pos]
-
-func get_chance(value, chance):
-	print()
 
 func show_achievement(inter_name: String):
 	var new_achiv = bottom_notification.instance()

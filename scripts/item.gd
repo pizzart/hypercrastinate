@@ -39,20 +39,11 @@ func _ready():
 		bg_anim.connect("animation_finished", self, "next_anim")
 		bg_anim.modulate = Color(0.3, 0.3, 0.3)
 
-	print(type)
-
 func next_anim():
 	if bg_anim.animation != "default":
 		bg_anim.animation = "default"
 	if dying:
 		queue_free()
-
-func _process(delta):
-	pass
-	# if not minigaming:
-	# 	time_left -= delta
-	# 	if time_left <= 0:
-	# 		queue_free()
 
 func _physics_process(delta): 
 	return

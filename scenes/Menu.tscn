@@ -28,7 +28,7 @@ margin_top = 138.0
 margin_right = 1815.0
 margin_bottom = 238.0
 custom_fonts/font = SubResource( 2 )
-text = "wow relatable game"
+text = "time waster"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_left = 0.5
