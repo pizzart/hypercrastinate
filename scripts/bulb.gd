@@ -8,13 +8,9 @@ func _ready():
 	start_minigame()
 
 func _process(delta):
-	time_left -= delta
-	if time_left <= 0:
-		queue_free()
-
 	position.y += delta * 300
 	if position.y > 550:
-		queue_free()
+		lose_item()
 
 	if grabbing:
 		position.x = clamp(get_global_mouse_position().x, -1920/2, 1920/2)

@@ -53,6 +53,7 @@ func show_achievement(inter_name: String):
 	var new_achiv = bottom_notification.instance()
 	get_node("Interface/Interface/Achievements").add_child(new_achiv)
 	new_achiv.init_notif(Global.achievements[inter_name]["title"], Global.achievements[inter_name]["text"])
+	Global.play_sound("res://audio/sfx/achievement.wav")
 
 func add_item(itemname, type, pos):
 	var new_item

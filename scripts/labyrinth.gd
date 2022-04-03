@@ -9,6 +9,7 @@ var grabbing: bool
 func _ready():
 	connect("area_shape_entered", self, "_on_area_shape_entered")
 	connect("area_shape_exited", self, "_on_area_shape_exited")
+	score = 150
 
 func _process(delta):
 	if grabbing:

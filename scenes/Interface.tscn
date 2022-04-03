@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://misc/Theme.tres" type="Theme" id=1]
-[ext_resource path="res://scenes/Notification.tscn" type="PackedScene" id=2]
 [ext_resource path="res://misc/HussarMilosc-lO6e.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://scripts/interface.gd" type="Script" id=4]
 
@@ -35,9 +34,6 @@ margin_top = 980.0
 margin_right = 1360.0
 margin_bottom = 1080.0
 grow_vertical = 0
-mouse_filter = 2
-
-[node name="Notification" parent="Interface/Achievements" instance=ExtResource( 2 )]
 mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Interface"]

@@ -2,11 +2,12 @@ class_name Item
 extends Area2D
 
 signal done
-export var collider: Shape2D
-export var item_anim: String
-export var score: int = 10
-export var time_left: float = 10
-export var text: String
+var collider: Shape2D
+var item_anim: String
+var score: int = 50
+var time_left: float = 10
+var blink_counter: float
+var text: String
 var collected_score = 0 # Adds to global during lifetime of item
 var texts = []
 var max_score
@@ -45,6 +46,19 @@ func next_anim():
 	if dying:
 		queue_free()
 
+func _process(delta):
+	time_left -= delta
+	if time_left <= 0:
+		lose_item()
+
+	if not minigaming:
+		blink_counter += delta
+		if blink_counter > 0.5:
+			modulate = Color(2, 2, 2)
+		if blink_counter > 1:
+			modulate = Color(1, 1, 1)
+			blink_counter = 0
+
 func _physics_process(delta): 
 	return
 	if (score > max_score):
@@ -52,6 +66,7 @@ func _physics_process(delta):
 
 func start_minigame():
 	minigaming = true
+	modulate = Color(1, 1, 1)
 
 func rand_notif():
 	Global.score += collected_score 
@@ -67,12 +82,13 @@ func notify(thistext):
 	var notif_inst = notif.instance()
 	notif_inst.get_node("DisappearText").text = thistext
 	get_parent().add_child(notif_inst)
-	notif_inst.position = position + Vector2(-350, 0)
+	notif_inst.position = position + Vector2(100, 0)
 	global_notify_inst = notif_inst
 
 func end_minigame():
 	Global.score += score
 	Global.emit_signal("score_updated")
+	Global.play_sound("res://audio/sfx/mgdone.wav")
 	# notify(text)
 	get_parent().increase_type(type)
 	rand_notif()
@@ -82,6 +98,10 @@ func end_minigame():
 		dying = true
 	else:
 		queue_free()
+
+func lose_item():
+	Global.play_sound("res://audio/sfx/loseitem.wav")
+	queue_free()
 
 func _on_input(_viewport, event, _shape_index):
 	if event.is_action_pressed("start_minigame"):
