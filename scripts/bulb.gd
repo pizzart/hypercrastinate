@@ -26,19 +26,21 @@ func start_minigame():
 func end_minigame():
 	get_parent().get_node("Basket").disappear()
 	get_parent().get_node("Basket/BasketArea/CollisionShape2D").disabled = true
+	grabbing = false
 	.end_minigame()
 
 func _on_input(_viewport, event, _shape_index):
-	if event.is_action_pressed("start_minigame"):
-		get_parent().get_node("Basket").appear()
-		get_parent().get_node("Normal").volume_db = -80
-		get_parent().get_node("Minigame").volume_db = 0
-		grabbing = true
-	if event.is_action_released("start_minigame"):
-		get_parent().get_node("Basket").disappear()
-		get_parent().get_node("Normal").volume_db = 0
-		get_parent().get_node("Minigame").volume_db = -80
-		grabbing = false
+	if minigaming:
+		if event.is_action_pressed("start_minigame"):
+			get_parent().get_node("Basket").appear()
+			get_parent().get_node("Normal").volume_db = -80
+			get_parent().get_node("Minigame").volume_db = 0
+			grabbing = true
+		if event.is_action_released("start_minigame"):
+			get_parent().get_node("Basket").disappear()
+			get_parent().get_node("Normal").volume_db = 0
+			get_parent().get_node("Minigame").volume_db = -80
+			grabbing = false
 
 func _on_area_entered(area: Area2D):
 	if minigaming:

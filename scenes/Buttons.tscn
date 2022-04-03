@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://misc/mod_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/buttons_main.gd" type="Script" id=2]
-[ext_resource path="res://graphics/windows.png" type="Texture" id=3]
+[ext_resource path="res://graphics/CodeFrames.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://misc/Theme.tres" type="Theme" id=4]
+[ext_resource path="res://misc/code_font.tres" type="DynamicFont" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -11,37 +11,38 @@
 z_index = -1
 script = ExtResource( 2 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-mouse_filter = 2
-texture = ExtResource( 3 )
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = ExtResource( 3 )
+animation = "appear"
+frame = 8
+playing = true
+centered = false
 
-[node name="Label" type="Label" parent="TextureRect"]
-margin_left = 26.0
-margin_top = 18.0
+[node name="Label" type="Label" parent="Sprite"]
+margin_left = 50.0
+margin_top = 71.0
 margin_right = 119.0
-margin_bottom = 57.0
-custom_fonts/font = ExtResource( 1 )
+margin_bottom = 99.0
+custom_fonts/font = ExtResource( 5 )
 text = "code"
 
-[node name="Label2" type="Label" parent="TextureRect"]
-margin_left = 24.0
-margin_top = 72.0
-margin_right = 471.0
-margin_bottom = 139.0
+[node name="Label2" type="Label" parent="Sprite"]
+margin_left = 28.0
+margin_top = 108.0
+margin_right = 457.0
+margin_bottom = 167.0
 theme = ExtResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "while(true):
 	           crastinate(72, \"hours\")"
 
-[node name="LineEdit" type="LineEdit" parent="TextureRect"]
-margin_left = 62.0
-margin_top = 107.0
-margin_right = 170.0
-margin_bottom = 139.0
+[node name="LineEdit" type="LineEdit" parent="Sprite"]
+margin_left = 64.0
+margin_top = 139.0
+margin_right = 160.0
+margin_bottom = 167.0
 theme = ExtResource( 4 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
 custom_styles/normal = SubResource( 1 )
 max_length = 3
 context_menu_enabled = false
@@ -52,4 +53,4 @@ placeholder_text = "pro"
 placeholder_alpha = 0.5
 caret_blink = true
 
-[connection signal="text_changed" from="TextureRect/LineEdit" to="." method="_on_text_changed"]
+[connection signal="text_changed" from="Sprite/LineEdit" to="." method="_on_text_changed"]

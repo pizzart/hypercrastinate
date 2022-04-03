@@ -4,7 +4,10 @@ signal win
 var pressed: int = 0
 
 func _ready():
-	$TextureRect/LineEdit.grab_focus()
+	$Sprite.frame = 0
+	$Sprite/LineEdit.grab_focus()
+	yield($Sprite, "animation_finished")
+	$Sprite.animation = "default"
 
 func _on_text_changed(text: String):
 	if text.to_lower() == "pro":

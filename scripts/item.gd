@@ -12,17 +12,20 @@ var collected_score = 0 # Adds to global during lifetime of item
 var texts = []
 var max_score
 var minigaming: bool
-var notif = preload("res://scenes/DisappearText.tscn")
 var global_notify_inst
 var col = CollisionShape2D.new()
 var dying = false
 var type: String
+var notif = preload("res://scenes/DisappearText.tscn")
+var shatter = preload("res://scenes/ShatterParticles.tscn")
 var RNG = RandomNumberGenerator.new()
 
 onready var spr = AnimatedSprite.new()
 onready var bg_anim = get_node("BG")
 
 func _ready():
+	RNG.randomize()
+
 	connect("input_event", self, "_on_input")
 	connect("done", self, "end_minigame")
 	input_pickable = true
@@ -112,6 +115,9 @@ func lose_item():
 	Global.play_sound("res://audio/sfx/loseitem.wav")
 	get_parent().get_node("Normal").volume_db = 0
 	get_parent().get_node("Minigame").volume_db = -80
+	var particles = shatter.instance()
+	get_parent().add_child(particles)
+	particles.position = position
 	queue_free()
 
 func _on_input(_viewport, event, _shape_index):

@@ -3,6 +3,7 @@ extends Item
 
 var btn_main = preload("res://scenes/Buttons.tscn")
 var buttons
+onready var cam = get_parent().get_node("Camera")
 
 func _ready():
 	score = 150
@@ -15,5 +16,7 @@ func start_minigame():
 	.start_minigame()
 
 func end_minigame():
-	buttons.queue_free()
+	buttons.get_node("Sprite").animation = "disappear"
 	.end_minigame()
+	yield(buttons.get_node("Sprite"), "animation_finished")
+	buttons.queue_free()
