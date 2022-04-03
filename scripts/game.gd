@@ -42,6 +42,9 @@ func get_type():
 			pos = Vector2(RNG.randf_range(-800, 800), RNG.randf_range(-400, 400))
 	return [type, pos]
 
+func get_chance(value, chance):
+	print()
+
 func show_achievement():
 	pass
 
