@@ -56,7 +56,8 @@ func _on_area_shape_entered(_rid, area, shape_idx, _local):
 		var shape = area.shape_owner_get_owner(shape_idx)
 		avoid = shape.global_position
 		if shape.name == "End":
-			maze.queue_free()
+			if is_instance_valid(maze):
+				maze.queue_free()
 			emit_signal("done")
 
 func _on_area_shape_exited(_rid, area, shape_idx, _local):

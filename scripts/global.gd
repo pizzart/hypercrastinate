@@ -38,6 +38,3 @@ var achievements = {
 		"icon": "res://misc/gotyz.png",
 	},
 }
-
-func _ready():
-	pass
