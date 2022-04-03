@@ -24,6 +24,16 @@ var items = {
 			"I'll die instead"
 			],
 	},
+	"shower": {
+		"icon": "res://graphics/ShowerFrames.tres",
+		"max_attempts": 0,
+		"win_achievement": "stupid",
+		"texts": [
+			"I'll do it tomorrow",
+			"stupid",
+			"I'll die instead"
+			],
+	},
 }
 
 var achievements = {
