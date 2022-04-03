@@ -22,9 +22,9 @@ func _draw():
 		for x in range(preset[y].size()):
 			var col = Color.white
 			if preset[y][x] == 1:
-				col = Color.black
-			if preset[y][x] == 2:
 				col = Color.red
+			if preset[y][x] == 2:
+				col = Color.teal
 			if preset[y][x] == 3:
 				col = Color.green
 			if Vector2(y, x) in correlate:
@@ -33,7 +33,7 @@ func _draw():
 				col.a = 1
 			else:
 				col.a = 0.5
-			draw_circle(Vector2(x * size, y * size), size / 2, col)
+			draw_arc(Vector2(x * size, y * size), size / 2, 0, PI * 2, 15, col, 2, true)
 
 func _process(delta):
 	pass

@@ -10,12 +10,25 @@ var basket_inst
 var line = Line2D.new()
 onready var init_pos = position
 
+func _ready():
+	line.default_color = Color.teal
+	line.width = 5
+	line.antialiased = true
+	add_child(line)
+
 func _process(delta):
+	time_left -= delta
+	if time_left <= 0:
+		queue_free()
+
 	if flying:
 		velocity.y += 10 * delta * 10
+		if get_overlapping_bodies().size() > 0:
+			velocity /= 2
 		position += velocity * delta * 10
 		if position.y > init_pos.y + 40:
-			basket_inst.queue_free()
+			if is_instance_valid(basket_inst):
+				basket_inst.queue_free()
 			queue_free()
 
 func start_minigame():
@@ -25,7 +38,6 @@ func start_minigame():
 	basket_inst = basket.instance()
 	get_parent().add_child(basket_inst)
 	basket_inst.position = position + Vector2(500, 0)
-	add_child(line)
 
 	.start_minigame()
 

@@ -35,11 +35,14 @@ margin_top = 980.0
 margin_right = 1360.0
 margin_bottom = 1080.0
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="Notification" parent="Interface/Achievements" instance=ExtResource( 2 )]
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Interface"]
 margin_left = 207.0
 margin_top = 133.0
 margin_right = 247.0
 margin_bottom = 173.0
+mouse_filter = 2

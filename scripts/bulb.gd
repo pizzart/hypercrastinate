@@ -1,8 +1,6 @@
 class_name Bulb
 extends Item
 
-var particles = preload("res://scenes/ShatterParticles.tscn")
-
 func _ready():
 	start_minigame()
 

@@ -36,7 +36,7 @@ func _ready():
 
 		bg_anim.animation = "appear"
 		bg_anim.connect("animation_finished", self, "next_anim")
-		bg_anim.modulate = Color.black
+		bg_anim.modulate = Color(0.3, 0.3, 0.3)
 
 func next_anim():
 	if bg_anim.animation != "default":

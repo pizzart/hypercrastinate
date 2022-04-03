@@ -14,10 +14,10 @@ var items = {
 			"I'll watch anime instead"
 			],
 	},
-	"labyrinth": {
-		"icon": "res://graphics/PhoneFrames.tres",
-		"max_attempts": 10,
-		"win_achievement": "work",
+	"book": {
+		"icon": "res://graphics/BookFrames.tres",
+		"max_attempts": 3,
+		"win_achievement": "stupid",
 		"texts": [
 			"I'll do it tomorrow",
 			"stupid",
@@ -29,10 +29,15 @@ var items = {
 var achievements = {
 	"work": {
 		"title": "Success!",
-		"text": "You got fired from you job!",
+		"text": "You got fired from your job!",
 		"icon": "res://misc/gotyz.png",
-		}
-	}
+	},
+	"stupid": {
+		"title": "Congrats!",
+		"text": "You are insane!",
+		"icon": "res://misc/gotyz.png",
+	},
+}
 
 func _ready():
 	pass
