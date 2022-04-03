@@ -37,7 +37,7 @@ script = ExtResource( 5 )
 [node name="BG" type="AnimatedSprite" parent="."]
 z_index = -1
 frames = ExtResource( 4 )
-frame = 4
+frame = 6
 playing = true
 
 [node name="Fire" type="Sprite" parent="."]
@@ -53,10 +53,8 @@ rotation = 0.551469
 [node name="Normal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 autoplay = true
-bus = "Music"
 
 [node name="Minigame" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = -80.0
 autoplay = true
-bus = "Music"
