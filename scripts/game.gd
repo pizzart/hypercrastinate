@@ -1,5 +1,6 @@
 extends Node2D
 
+
 enum Types {
 	PHONE,
 	BULB,
@@ -12,6 +13,7 @@ var counter = {}
 # var item = preload("res://scripts/item.gd")
 var phone = preload("res://scenes/Phone.tscn")
 var RNG = RandomNumberGenerator.new()
+onready var bottom_notification = preload("res://scenes/Notification.tscn")
 
 func _ready():
 	RNG.randomize()
@@ -45,8 +47,10 @@ func get_type():
 func get_chance(value, chance):
 	print()
 
-func show_achievement():
-	pass
+func show_achievement(inter_name: String):
+	var new_achiv = bottom_notification.instance()
+	get_node("Interface/Interface/Achievements").add_child(new_achiv)
+	new_achiv.init_notif(Global.achievements[inter_name]["title"], Global.achievements[inter_name]["text"])
 
 func add_item(itemname, type, pos):
 	var new_item
@@ -70,7 +74,7 @@ func add_item(itemname, type, pos):
 	new_item.texts = Global.items[itemname]["texts"]
 	new_item.item_anim = Global.items[itemname]["icon"]
 	new_item.position = pos
-	new_item.type = type
+	new_item.type = itemname
 	# new_item.anima
 	add_child(new_item)
 
@@ -81,5 +85,5 @@ func increase_type(type):
 		else:
 			counter[type] = 1
 
-		if counter[type] > Global.items[type]["win_score"]:
-			show_achievement()
+		if counter[type] == Global.items[type]["win_score"]:
+			show_achievement(Global.items[type]["win_achievement"])

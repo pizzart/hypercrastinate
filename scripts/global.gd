@@ -26,7 +26,7 @@ var items = {
 	},
 	"shower": {
 		"icon": "res://graphics/ShowerFrames.tres",
-		"win_score": 0,
+		"win_score": 1000,
 		"win_achievement": "stupid",
 		"texts": [
 			"I'll do it tomorrow",

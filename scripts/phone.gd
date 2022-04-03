@@ -13,17 +13,17 @@ func _process(delta):
 	spr.scale = Vector2(size, size)
 
 	if size > MAXSIZE:
-		end_minigame()
-	if (size < click_reduce):
+		queue_free()
+	if size < click_reduce:
 		end_minigame()
 
-	if (size > 0.8):
+	if size > 0.8:
 		modulate = Color.red
-	if (size < 0.7):
+	if size < 0.7:
 		modulate = Color.white
 
 func _on_Phone_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("start_minigame"):
 		if size > click_reduce:
 			size -= click_reduce
-		collected_score += 1
+		collected_score += 0
