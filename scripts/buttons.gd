@@ -16,7 +16,7 @@ func start_minigame():
 	.start_minigame()
 
 func end_minigame():
-	buttons.get_node("Sprite").animation = "disappear"
 	.end_minigame()
+	buttons.get_node("Sprite").animation = "disappear"
 	yield(buttons.get_node("Sprite"), "animation_finished")
 	buttons.queue_free()

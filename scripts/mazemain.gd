@@ -10,6 +10,7 @@ var preset = [
 	[3,1,1,0,0],
 ]
 var selected = []
+var basket = preload("res://graphics/basket.png")
 
 func _ready():
 	create_maze()
@@ -31,7 +32,10 @@ func _draw():
 				col = Color.green
 			if Vector2(y, x) in correlate:
 				col = Color.blue
-			draw_arc(Vector2(x * size, y * size), size / 2, 0, PI * 2, 15, col, 2, true)
+			if preset[y][x] == 3:
+				draw_texture(basket, Vector2(x * size - size / 2, y * size - size / 2))
+			else:
+				draw_arc(Vector2(x * size, y * size), size / 2, 0, PI * 2, 15, col, 2, true)
 
 func create_maze():
 	for y in range(preset.size()):

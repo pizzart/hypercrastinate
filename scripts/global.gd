@@ -37,6 +37,23 @@ var items = {
 			"I'm a gamer, I don't need showers",
 			],
 	},
+	"can": {
+		"icon": "res://graphics/CanFrames.tres",
+		"win_score": 10,
+		"win_achievement": "obese",
+		"texts": [
+			"A nice boost",
+			],
+	},
+	"shirt": {
+		"icon": "res://graphics/ShirtFrames.tres",
+		"win_score": 5,
+		"win_achievement": "stock",
+		"texts": [
+			"I can always wash it later",
+			"Why'd I need to change clothes",
+			],
+	},
 }
 
 var achievements = {
@@ -58,6 +75,16 @@ var achievements = {
 	"darkness": {
 		"title": "Dark cave",
 		"text": "You're living in darkness!",
+		"icon": "res://misc/gotyz.png",
+	},
+	"obese": {
+		"title": "Moderator",
+		"text": "You've gained 100 pounds!",
+		"icon": "res://misc/gotyz.png",
+	},
+	"stock": {
+		"title": "I'll take your entire stock",
+		"text": "You've got some stock!",
 		"icon": "res://misc/gotyz.png",
 	},
 }

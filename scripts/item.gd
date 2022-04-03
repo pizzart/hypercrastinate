@@ -18,6 +18,7 @@ var dying = false
 var type: String
 var notif = preload("res://scenes/DisappearText.tscn")
 var shatter = preload("res://scenes/ShatterParticles.tscn")
+var icon = preload("res://graphics/code.png")
 var RNG = RandomNumberGenerator.new()
 
 onready var spr = AnimatedSprite.new()
@@ -44,20 +45,11 @@ func _ready():
 		bg_anim.connect("animation_finished", self, "next_anim")
 		bg_anim.modulate = Color(0.3, 0.3, 0.3)
 
-func next_anim():
-	if not bg_anim == null:
-		if bg_anim.animation != "default":
-			bg_anim.animation = "default"
-	if spr.animation != "default":
-		spr.animation = "default"
-	if dying:
-		queue_free()
+func _draw():
+	if not minigaming:
+		draw_texture(icon, Vector2(-32, 70))
 
 func _process(delta):
-	time_left -= delta
-	if time_left <= 0:
-		lose_item()
-
 	if not minigaming:
 		blink_counter += delta
 		if blink_counter > 0.5:
@@ -67,15 +59,24 @@ func _process(delta):
 			blink_counter = 0
 		if time_left < 5:
 			modulate.r = 4
+	else:
+		time_left -= delta
+		if time_left <= 0:
+			lose_item()
 
-func _physics_process(delta): 
-	return
-	if (score > max_score):
-		pass
+func next_anim():
+	if not bg_anim == null:
+		if bg_anim.animation != "default":
+			bg_anim.animation = "default"
+	if spr.animation != "default":
+		spr.animation = "default"
+	if dying:
+		queue_free()
 
 func start_minigame():
 	minigaming = true
 	modulate = Color(1, 1, 1)
+	update()
 	get_parent().get_node("Normal").volume_db = -80
 	get_parent().get_node("Minigame").volume_db = 0
 

@@ -11,25 +11,6 @@ func _ready():
 	connect("area_shape_exited", self, "_on_area_shape_exited")
 	score = 150
 
-func _process(delta):
-	if grabbing and minigaming:
-		position = get_global_mouse_position()
-		if avoid != Vector2():
-			if abs(position.x - avoid.x) > abs(position.y - avoid.y):
-				if position.x > avoid.x:
-					position.x = clamp(position.x, avoid.x + size - 10, INF)
-				elif position.x < avoid.x:
-					position.x = clamp(position.x, -INF, avoid.x - size + 10)
-
-			else:
-				if position.y > avoid.y:
-					position.y = clamp(position.y, avoid.y + size - 10, INF)
-				elif position.y < avoid.y:
-					position.y = clamp(position.y, -INF, avoid.y - size + 10)
-
-		position.x = clamp(position.x, maze.position.x, maze.position.x + size * 4)
-		position.y = clamp(position.y, maze.position.y, maze.position.y + size * 4)
-
 func start_minigame():
 	maze = MazeMain.new()
 	maze.size = size
@@ -39,10 +20,24 @@ func start_minigame():
 	.start_minigame()
 
 func _on_input(_viewport, event, shape_index):
-	if event.is_action_pressed("start_minigame"):
-		grabbing = true
-	if event.is_action_released("start_minigame"):
-		grabbing = false
+	if minigaming:
+		if Input.is_action_pressed("start_minigame"):
+			position = get_global_mouse_position()
+			if avoid != Vector2():
+				if abs(position.x - avoid.x) > abs(position.y - avoid.y):
+					if position.x > avoid.x:
+						position.x = clamp(position.x, avoid.x + size - 10, INF)
+					elif position.x < avoid.x:
+						position.x = clamp(position.x, -INF, avoid.x - size + 10)
+
+				else:
+					if position.y > avoid.y:
+						position.y = clamp(position.y, avoid.y + size - 10, INF)
+					elif position.y < avoid.y:
+						position.y = clamp(position.y, -INF, avoid.y - size + 10)
+
+			position.x = clamp(position.x, maze.position.x, maze.position.x + size * 4)
+			position.y = clamp(position.y, maze.position.y, maze.position.y + size * 4)
 	._on_input(_viewport, event, shape_index)
 
 func _on_area_shape_entered(_rid, area, shape_idx, _local):

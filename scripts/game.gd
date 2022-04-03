@@ -20,6 +20,7 @@ func _ready():
 	add_item("gotyz", Types.PHONE, Vector2(-400, 0))
 	add_item("book", Types.BULB, Vector2(400, 0))
 	add_item("shower", Types.BUTTONS, Vector2(200, -500))
+	add_item("shower", Types.MAZE, Vector2(-200, -300))
 
 func _process(delta):
 	time_elapsed += delta
