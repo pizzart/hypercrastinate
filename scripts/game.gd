@@ -1,16 +1,17 @@
 extends Node2D
 
-var time_elapsed: float
-var time_next: float = 5
-# var item = preload("res://scripts/item.gd")
-var phone = preload("res://scenes/Phone.tscn")
-var RNG = RandomNumberGenerator.new()
 enum Types {
 	PHONE,
 	BULB,
 	MAZE,
 	BUTTONS,
 }
+var time_elapsed: float
+var time_next: float = 5
+var counter = {}
+# var item = preload("res://scripts/item.gd")
+var phone = preload("res://scenes/Phone.tscn")
+var RNG = RandomNumberGenerator.new()
 
 func _ready():
 	RNG.randomize()
@@ -66,5 +67,16 @@ func add_item(itemname, type, pos):
 	new_item.texts = Global.items[itemname]["texts"]
 	new_item.item_anim = Global.items[itemname]["icon"]
 	new_item.position = pos
+	new_item.type = type
 	# new_item.anima
 	add_child(new_item)
+
+func increase_type(type):
+	if Global.items[type].has("win_score"):
+		if type in counter:
+			counter[type] += 1
+		else:
+			counter[type] = 1
+
+		if counter[type] > Global.items[type]["win_score"]:
+			show_achievement()

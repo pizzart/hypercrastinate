@@ -16,7 +16,7 @@ var items = {
 	},
 	"book": {
 		"icon": "res://graphics/BookFrames.tres",
-		"max_attempts": 3,
+		"win_score": 3,
 		"win_achievement": "stupid",
 		"texts": [
 			"I'll do it tomorrow",
@@ -26,7 +26,7 @@ var items = {
 	},
 	"shower": {
 		"icon": "res://graphics/ShowerFrames.tres",
-		"max_attempts": 0,
+		"win_score": 0,
 		"win_achievement": "stupid",
 		"texts": [
 			"I'll do it tomorrow",
