@@ -9,6 +9,7 @@ enum Types {
 	PHONE,
 	BULB,
 	MAZE,
+	BUTTONS,
 }
 
 func _ready():
@@ -36,8 +37,8 @@ func get_type():
 			pos = Vector2(RNG.randf_range(-900, 900), RNG.randf_range(-1000, -700))
 		Types.MAZE:
 			pos = Vector2(RNG.randf_range(-900, 400), RNG.randf_range(-500, 0))
-		Types.THROW:
-			pos = Vector2(RNG.randf_range(-900, 400), RNG.randf_range(-500, 400))
+		Types.BUTTONS:
+			pos = Vector2(RNG.randf_range(-800, 800), RNG.randf_range(-400, 400))
 	return [type, pos]
 
 func show_achievement():
@@ -56,8 +57,8 @@ func add_item(itemname, type, pos):
 		Types.MAZE:
 			new_item = Labyrinth.new()
 			new_item.collider = shape
-		Types.THROW:
-			new_item = Throw.new()
+		Types.BUTTONS:
+			new_item = Buttons.new()
 			new_item.collider = shape
 		_:
 			new_item = Bulb.new()
