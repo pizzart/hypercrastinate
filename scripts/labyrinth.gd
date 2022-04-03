@@ -12,7 +12,7 @@ func _ready():
 	score = 150
 
 func _process(delta):
-	if grabbing:
+	if grabbing and minigaming:
 		position = get_global_mouse_position()
 		if avoid != Vector2():
 			if abs(position.x - avoid.x) > abs(position.y - avoid.y):
@@ -31,19 +31,12 @@ func _process(delta):
 		position.y = clamp(position.y, maze.position.y, maze.position.y + size * 4)
 
 func start_minigame():
-	get_parent().get_node("Normal").volume_db = -80
-	get_parent().get_node("Minigame").volume_db = 0
 	maze = MazeMain.new()
 	maze.size = size
 	get_parent().add_child(maze)
 	maze.position = position
 	scale = Vector2(0.5, 0.5)
 	.start_minigame()
-
-func end_minigame():
-	get_parent().get_node("Normal").volume_db = 0
-	get_parent().get_node("Minigame").volume_db = -80
-	.end_minigame()
 
 func _on_input(_viewport, event, shape_index):
 	if event.is_action_pressed("start_minigame"):

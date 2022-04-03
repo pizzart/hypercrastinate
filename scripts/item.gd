@@ -30,6 +30,7 @@ func _ready():
 	add_child(col)
 	spr.playing = true
 	spr.frames = load(item_anim)
+	spr.connect("animation_finished", self, "next_anim")
 	add_child(spr)
 
 	if not bg_anim == null:
@@ -41,8 +42,11 @@ func _ready():
 		bg_anim.modulate = Color(0.3, 0.3, 0.3)
 
 func next_anim():
-	if bg_anim.animation != "default":
-		bg_anim.animation = "default"
+	if not bg_anim == null:
+		if bg_anim.animation != "default":
+			bg_anim.animation = "default"
+	if spr.animation != "default":
+		spr.animation = "default"
 	if dying:
 		queue_free()
 
@@ -58,6 +62,8 @@ func _process(delta):
 		if blink_counter > 1:
 			modulate = Color(1, 1, 1)
 			blink_counter = 0
+		if time_left < 5:
+			modulate.r = 4
 
 func _physics_process(delta): 
 	return
@@ -67,6 +73,8 @@ func _physics_process(delta):
 func start_minigame():
 	minigaming = true
 	modulate = Color(1, 1, 1)
+	get_parent().get_node("Normal").volume_db = -80
+	get_parent().get_node("Minigame").volume_db = 0
 
 func rand_notif():
 	Global.score += collected_score 
@@ -86,24 +94,27 @@ func notify(thistext):
 	global_notify_inst = notif_inst
 
 func end_minigame():
+	get_parent().get_node("Normal").volume_db = 0
+	get_parent().get_node("Minigame").volume_db = -80
 	Global.score += score
 	Global.emit_signal("score_updated")
 	Global.play_sound("res://audio/sfx/mgdone.wav")
 	# notify(text)
 	get_parent().increase_type(type)
 	rand_notif()
+	spr.animation = "disappear"
+	dying = true
 	if not bg_anim == null:
 		bg_anim.animation = "disappear"
-		spr.animation = "disappear"
-		dying = true
-	else:
-		queue_free()
+	minigaming = false
 
 func lose_item():
 	Global.play_sound("res://audio/sfx/loseitem.wav")
+	get_parent().get_node("Normal").volume_db = 0
+	get_parent().get_node("Minigame").volume_db = -80
 	queue_free()
 
 func _on_input(_viewport, event, _shape_index):
 	if event.is_action_pressed("start_minigame"):
-		if not minigaming:
+		if not minigaming and not dying:
 			start_minigame()

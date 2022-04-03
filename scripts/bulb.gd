@@ -8,7 +8,8 @@ func _ready():
 	start_minigame()
 
 func _process(delta):
-	position.y += delta * 300
+	if minigaming:
+		position.y += delta * 300
 	if position.y > 550:
 		lose_item()
 
@@ -19,6 +20,8 @@ func _process(delta):
 
 func start_minigame():
 	.start_minigame()
+	get_parent().get_node("Normal").volume_db = 0
+	get_parent().get_node("Minigame").volume_db = -80
 
 func end_minigame():
 	get_parent().get_node("Basket").disappear()
@@ -28,11 +31,16 @@ func end_minigame():
 func _on_input(_viewport, event, _shape_index):
 	if event.is_action_pressed("start_minigame"):
 		get_parent().get_node("Basket").appear()
+		get_parent().get_node("Normal").volume_db = -80
+		get_parent().get_node("Minigame").volume_db = 0
 		grabbing = true
 	if event.is_action_released("start_minigame"):
 		get_parent().get_node("Basket").disappear()
+		get_parent().get_node("Normal").volume_db = 0
+		get_parent().get_node("Minigame").volume_db = -80
 		grabbing = false
 
 func _on_area_entered(area: Area2D):
-	if area.name == "BasketArea":
-		emit_signal("done")
+	if minigaming:
+		if area.name == "BasketArea":
+			emit_signal("done")

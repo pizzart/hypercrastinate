@@ -78,7 +78,6 @@ func add_item(itemname, type, pos):
 	new_item.item_anim = Global.items[itemname]["icon"]
 	new_item.position = pos
 	new_item.type = itemname
-	# new_item.anima
 	add_child(new_item)
 
 func increase_type(type):
