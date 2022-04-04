@@ -40,6 +40,14 @@ func _process(delta):
 			var type = gotten[0]
 			var pos = gotten[1]
 			add_item(Global.items.keys()[RNG.randi() % Global.items.keys().size()], type, pos)
+	if Global.score <= 5000:
+		$BG/BGLayer/Add1.modulate.a = float(Global.score) / 5000
+	elif Global.score <= 10000:
+		$BG/BGLayer/Add2.modulate.a = float(Global.score - 5000) / 5000
+	elif Global.score <= 15000:
+		$BG/BGLayer/Add3.modulate.a = float(Global.score - 10000) / 5000
+	elif Global.score <= 20000:
+		$BG/BGLayer/Add4.modulate.a = float(Global.score - 15000) / 5000
 
 func get_type():
 	var type
