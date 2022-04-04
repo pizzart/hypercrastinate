@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://misc/Theme.tres" type="Theme" id=1]
 [ext_resource path="res://graphics/arrow.png" type="Texture" id=2]
 [ext_resource path="res://misc/HussarMilosc-lO6e.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://scripts/interface.gd" type="Script" id=4]
+[ext_resource path="res://graphics/panic.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 87
@@ -62,4 +63,11 @@ margin_top = 104.0
 margin_right = 764.0
 margin_bottom = 232.0
 rect_rotation = 48.0
+mouse_filter = 2
 texture = ExtResource( 2 )
+
+[node name="Panic" type="TextureRect" parent="Interface"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource( 5 )

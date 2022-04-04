@@ -13,6 +13,7 @@ func _process(delta):
 		temp_score += 1
 	$Score.text = str(temp_score)
 	$OverBar.value = get_parent().get_parent().score_lost
+	$Panic.modulate.a = get_parent().get_parent().score_lost / get_parent().get_parent().MAX_SCORE_LOST
 
 func _on_score_updated():
 	upping = true

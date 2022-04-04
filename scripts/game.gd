@@ -30,7 +30,7 @@ func _ready():
 		add_child(tut.instance())
 
 func _process(delta):
-	score_lost -= delta * 30
+	score_lost = max(score_lost - delta * 30, 0)
 	if not tutorial:
 		time_elapsed += delta
 		time_next -= delta
