@@ -23,12 +23,13 @@ animations = [ {
 [node name="BG" type="ParallaxBackground"]
 
 [node name="BGLayer" type="ParallaxLayer" parent="."]
+z_index = -2
 motion_scale = Vector2( 0.5, 0.5 )
 
 [node name="BG" type="AnimatedSprite" parent="BGLayer"]
 z_index = -1
 frames = ExtResource( 1 )
-frame = 7
+frame = 5
 playing = true
 
 [node name="Add1" type="Sprite" parent="BGLayer"]
@@ -52,6 +53,7 @@ motion_scale = Vector2( 0.9, 0.9 )
 
 [node name="Fire" type="AnimatedSprite" parent="FireLayer"]
 position = Vector2( 0, 502 )
+z_index = -1
 frames = SubResource( 5 )
 frame = 2
 playing = true

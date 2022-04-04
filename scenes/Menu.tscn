@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://misc/Theme.tres" type="Theme" id=1]
 [ext_resource path="res://misc/HussarMilosc-lO6e.otf" type="DynamicFontData" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://audio/mus/title.wav" type="AudioStream" id=4]
 [ext_resource path="res://scenes/BG.tscn" type="PackedScene" id=5]
 [ext_resource path="res://graphics/titletemp.png" type="Texture" id=6]
+[ext_resource path="res://misc/mod_font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://scripts/camera.gd" type="Script" id=12]
 
 [sub_resource type="Environment" id=4]
@@ -92,6 +93,54 @@ theme = ExtResource( 1 )
 custom_fonts/font = SubResource( 1 )
 text = "Go back to life"
 
+[node name="Music" type="HBoxContainer" parent="CanvasLayer/Margin/H/V"]
+margin_top = 328.0
+margin_right = 861.0
+margin_bottom = 367.0
+custom_constants/separation = 10
+
+[node name="Label" type="Label" parent="CanvasLayer/Margin/H/V/Music"]
+margin_right = 115.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 7 )
+text = "Music"
+
+[node name="Slider" type="HSlider" parent="CanvasLayer/Margin/H/V/Music"]
+margin_left = 125.0
+margin_top = 3.0
+margin_right = 861.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource( 1 )
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Sounds" type="HBoxContainer" parent="CanvasLayer/Margin/H/V"]
+margin_top = 371.0
+margin_right = 861.0
+margin_bottom = 410.0
+custom_constants/separation = 10
+
+[node name="Label" type="Label" parent="CanvasLayer/Margin/H/V/Sounds"]
+margin_right = 146.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 7 )
+text = "Sounds"
+
+[node name="Slider" type="HSlider" parent="CanvasLayer/Margin/H/V/Sounds"]
+margin_left = 156.0
+margin_top = 3.0
+margin_right = 861.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource( 1 )
+max_value = 1.0
+step = 0.01
+value = 0.5
+
 [node name="Camera" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.95, 0.95 )
@@ -103,3 +152,7 @@ script = ExtResource( 12 )
 
 [connection signal="pressed" from="CanvasLayer/Margin/H/V/Start" to="." method="_on_started"]
 [connection signal="pressed" from="CanvasLayer/Margin/H/V/Exit" to="." method="_on_exited"]
+[connection signal="gui_input" from="CanvasLayer/Margin/H/V/Music/Slider" to="." method="_on_music_input"]
+[connection signal="value_changed" from="CanvasLayer/Margin/H/V/Music/Slider" to="." method="_on_music_changed"]
+[connection signal="gui_input" from="CanvasLayer/Margin/H/V/Sounds/Slider" to="." method="_on_sound_input"]
+[connection signal="value_changed" from="CanvasLayer/Margin/H/V/Sounds/Slider" to="." method="_on_sound_changed"]

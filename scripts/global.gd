@@ -2,6 +2,8 @@ extends Node
 
 signal score_updated
 var score: int
+var mus_vol: float
+var sfx_vol: float
 
 var items = {
 	"gotyz": {
@@ -89,6 +91,13 @@ var achievements = {
 	},
 }
 
+func _ready():
+	connect("tree_exiting", self, "_on_tree_exiting")
+	mus_vol = load_conf("volume", "music", 0.5)
+	sfx_vol = load_conf("volume", "sound", 0.5)
+	AudioServer.set_bus_volume_db(1, linear2db(mus_vol))
+	AudioServer.set_bus_volume_db(2, linear2db(sfx_vol))
+
 func play_sound(path: String):
 	var stream = load(path)
 	var player = AudioStreamPlayer.new()
@@ -109,3 +118,7 @@ func load_conf(section, key, default):
 	if err != OK:
 		return 0
 	return config.get_value(section, key, default)
+
+func _on_tree_exiting():
+	Global.save_conf("volume", "music", db2linear(AudioServer.get_bus_volume_db(1)))
+	Global.save_conf("volume", "sound", db2linear(AudioServer.get_bus_volume_db(2)))

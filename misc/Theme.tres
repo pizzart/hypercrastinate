@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=2]
+[gd_resource type="Theme" load_steps=9 format=2]
 
 [ext_resource path="res://misc/HussarMilosc-lO6e.otf" type="DynamicFontData" id=1]
 
@@ -23,6 +23,18 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 
+[sub_resource type="ImageTexture" id=9]
+size = Vector2( 1, 32 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.372549, 0.372549, 0.372549, 1 )
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id=7]
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
 [sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 1 )
@@ -33,3 +45,8 @@ Button/styles/focus = SubResource( 3 )
 Button/styles/hover = SubResource( 4 )
 Button/styles/normal = SubResource( 2 )
 Button/styles/pressed = SubResource( 3 )
+HSlider/icons/grabber = SubResource( 9 )
+HSlider/icons/grabber_highlight = SubResource( 9 )
+HSlider/styles/grabber_area = SubResource( 8 )
+HSlider/styles/grabber_area_highlight = SubResource( 8 )
+HSlider/styles/slider = SubResource( 7 )

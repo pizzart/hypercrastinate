@@ -29,8 +29,6 @@ func _ready():
 	RNG.randomize()
 	if not Global.load_conf("game", "tut_done", false):
 		add_child(tut.instance())
-	add_item("gotyz", Types.MAZE, Vector2(-400, 0))
-	add_item("gotyz", Types.MAZE, Vector2(400, 0))
 
 func _process(delta):
 	score_lost = max(score_lost - delta * 30, 0)
@@ -68,7 +66,7 @@ func get_type():
 		pos = Vector2(RNG.randf_range(-900, 400), RNG.randf_range(-500, 0))
 	elif chance >= 0.9 and chance <= 1:
 		type = Types.BUTTONS
-		pos = Vector2(RNG.randf_range(-800, 800), RNG.randf_range(-400, 400))
+		pos = Vector2(RNG.randf_range(-800, 700), RNG.randf_range(-400, 300))
 	return [type, pos]
 
 func show_achievement(inter_name: String):
