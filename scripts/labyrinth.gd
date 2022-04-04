@@ -3,6 +3,7 @@ extends Item
 
 var maze
 var walker
+var walker_spr
 var size = 100
 var avoid = Vector2()
 var grabbing: bool
@@ -19,7 +20,6 @@ func _draw():
 func start_minigame():
 	for m in get_tree().get_nodes_in_group("Maze"):
 		if m != self:
-			print("yuh")
 			if m.minigaming:
 				m.hide_item()
 
@@ -30,7 +30,7 @@ func start_minigame():
 	add_child(maze)
 
 	walker = MazeWalker.new()
-	var walker_spr = spr.duplicate()
+	walker_spr = spr.duplicate()
 	walker_spr.animation = "default"
 	walker.add_child(walker_spr)
 	walker.add_child(col.duplicate())
@@ -41,6 +41,18 @@ func start_minigame():
 
 	#scale = Vector2(0.5, 0.5)
 	.start_minigame()
+
+func end_minigame():
+	walker_spr.animation = "disappear"
+	walker.remove_child(walker_spr)
+	add_child(walker_spr)
+	walker_spr.scale = Vector2(0.5, 0.5)
+	walker_spr.position = walker.position
+	if is_instance_valid(maze):
+		maze.queue_free()
+	if is_instance_valid(walker):
+		walker.queue_free()
+	.end_minigame()
 
 func hide_item():
 	spr.show()

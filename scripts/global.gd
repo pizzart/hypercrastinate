@@ -4,6 +4,7 @@ signal score_updated
 var score: int
 var mus_vol: float
 var sfx_vol: float
+var RNG = RandomNumberGenerator.new()
 
 var items = {
 	"gotyz": {
@@ -13,7 +14,7 @@ var items = {
 		"texts": [
 			"I'll fix it later",
 			"Not a big issue",
-			"To busy GAMING",
+			"Too busy GAMING",
 			"My monitor has light anyways",
 			],
 	},
@@ -92,6 +93,7 @@ var achievements = {
 }
 
 func _ready():
+	RNG.randomize()
 	connect("tree_exiting", self, "_on_tree_exiting")
 	mus_vol = load_conf("volume", "music", 0.5)
 	sfx_vol = load_conf("volume", "sound", 0.5)

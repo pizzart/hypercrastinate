@@ -33,7 +33,7 @@ func end_minigame():
 
 func _on_Phone_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("start_minigame"):
-		if click_enabled:
+		if click_enabled and not dying:
 			Global.play_sound("res://audio/sfx/click.wav")
 			if size > click_reduce:
 				size -= click_reduce

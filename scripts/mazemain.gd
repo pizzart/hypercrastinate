@@ -18,11 +18,9 @@ var presets = [
 var preset
 var selected = []
 var basket = preload("res://graphics/basket.png")
-var RNG = RandomNumberGenerator.new()
 
 func _ready():
-	RNG.randomize()
-	preset = presets[RNG.randi() % presets.size()]
+	preset = presets[Global.RNG.randi() % presets.size()]
 	create_maze()
 
 func _draw():
