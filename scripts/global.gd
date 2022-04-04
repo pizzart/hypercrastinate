@@ -93,8 +93,8 @@ var achievements = {
 
 func _ready():
 	connect("tree_exiting", self, "_on_tree_exiting")
-	mus_vol = load_conf("volume", "music", -10)
-	sfx_vol = load_conf("volume", "sound", -10)
+	mus_vol = load_conf("volume", "music", 0.5)
+	sfx_vol = load_conf("volume", "sound", 0.5)
 	AudioServer.set_bus_volume_db(1, linear2db(mus_vol))
 	AudioServer.set_bus_volume_db(2, linear2db(sfx_vol))
 
