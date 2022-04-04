@@ -40,13 +40,11 @@ rotation = 0.551469
 [node name="Interface" parent="." instance=ExtResource( 3 )]
 
 [node name="Normal" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
 stream = ExtResource( 1 )
 autoplay = true
 bus = "Music"
 
 [node name="Minigame" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
 stream = ExtResource( 2 )
 volume_db = -80.0
 autoplay = true

@@ -29,6 +29,8 @@ func _ready():
 	RNG.randomize()
 	if not Global.load_conf("game", "tut_done", false):
 		add_child(tut.instance())
+	add_item("gotyz", Types.MAZE, Vector2(-400, 0))
+	add_item("gotyz", Types.MAZE, Vector2(400, 0))
 
 func _process(delta):
 	score_lost = max(score_lost - delta * 30, 0)
@@ -41,6 +43,7 @@ func _process(delta):
 			var type = gotten[0]
 			var pos = gotten[1]
 			add_item(Global.items.keys()[RNG.randi() % Global.items.keys().size()], type, pos)
+
 	if Global.score <= 5000:
 		$BG/BGLayer/Add1.modulate.a = float(Global.score) / 5000
 	elif Global.score <= 10000:
@@ -119,11 +122,12 @@ func game_over():
 	add_child(gameover)
 
 func _on_music_finished():
-	if score_lost >= MAX_SCORE_LOST / 3:
+	if Global.score >= 9000:
 		$Normal.stream = panic
 		$Minigame.stream = panicmg
 	else:
 		$Normal.stream = normal
 		$Minigame.stream = normalmg
+
 	$Normal.playing = true
 	$Minigame.playing = true

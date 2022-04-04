@@ -14,6 +14,8 @@ func _draw():
 		draw_texture(icon, Vector2(-32, 70))
 
 func start_minigame():
+	Global.play_sound("res://audio/sfx/click.wav")
+
 	buttons = btn_main.instance()
 	buttons.position += Vector2(-100, -40)
 	add_child(buttons)

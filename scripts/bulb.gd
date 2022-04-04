@@ -37,6 +37,7 @@ func end_minigame():
 func _on_input(_viewport, event, _shape_index):
 	if minigaming and grab_enabled:
 		if event.is_action_pressed("start_minigame"):
+			Global.play_sound("res://audio/sfx/click.wav")
 			get_parent().get_node("Basket").appear()
 			get_parent().get_node("Normal").volume_db = -80
 			get_parent().get_node("Minigame").volume_db = 0
