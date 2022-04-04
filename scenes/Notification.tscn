@@ -69,8 +69,8 @@ custom_fonts/normal_font = ExtResource( 6 )
 bbcode_enabled = true
 bbcode_text = "[shake rate=10 level=3] Cool
 [/shake] "
-text = " Cool
- "
+text = "[shake rate=10 level=3] Cool
+[/shake] "
 scroll_active = false
 
 [node name="Text" type="RichTextLabel" parent="HBox/VBox"]
@@ -83,7 +83,7 @@ size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
 bbcode_text = "[shake rate=10 level=3]asd[/shake] "
-text = "asd "
+text = "[shake rate=10 level=3]asd[/shake] "
 scroll_active = false
 
 [node name="Timer" type="Timer" parent="."]
