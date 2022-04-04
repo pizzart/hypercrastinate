@@ -12,6 +12,7 @@ func _process(delta):
 	else:
 		temp_score += 1
 	$Score.text = str(temp_score)
+	$OverBar.value = get_parent().get_parent().score_lost
 
 func _on_score_updated():
 	upping = true

@@ -50,11 +50,13 @@ script = ExtResource( 5 )
 [node name="BG" type="AnimatedSprite" parent="."]
 z_index = -1
 frames = ExtResource( 4 )
+frame = 1
 playing = true
 
 [node name="Fire" type="AnimatedSprite" parent="."]
 position = Vector2( 0, 502 )
 frames = SubResource( 5 )
+frame = 5
 playing = true
 
 [node name="Basket" parent="." instance=ExtResource( 8 )]
@@ -66,8 +68,12 @@ rotation = 0.551469
 [node name="Normal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 autoplay = true
+bus = "Music"
 
 [node name="Minigame" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = -80.0
 autoplay = true
+bus = "Music"
+
+[connection signal="finished" from="Normal" to="." method="_on_music_finished"]

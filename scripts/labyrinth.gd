@@ -19,6 +19,11 @@ func start_minigame():
 	scale = Vector2(0.5, 0.5)
 	.start_minigame()
 
+func lose_item():
+	if is_instance_valid(maze):
+		maze.queue_free()
+	.lose_item()
+
 func _on_input(_viewport, event, shape_index):
 	if minigaming:
 		if Input.is_action_pressed("start_minigame"):

@@ -7,22 +7,26 @@ enum Types {
 	MAZE,
 	BUTTONS,
 }
+const MAX_SCORE_LOST = 1000
 var time_elapsed: float
 var time_next: float = 5
+var score_lost: float
 var counter = {}
 # var item = preload("res://scripts/item.gd")
+var normal = preload("res://audio/mus/ingame1.wav")
+var normalmg = preload("res://audio/mus/ingame1mg.wav")
+var panic = preload("res://audio/mus/panic.wav")
+var panicmg = preload("res://audio/mus/panicmg.wav")
 var phone = preload("res://scenes/Phone.tscn")
+var over_screen = preload("res://scenes/GameOver.tscn")
+var bottom_notification = preload("res://scenes/Notification.tscn")
 var RNG = RandomNumberGenerator.new()
-onready var bottom_notification = preload("res://scenes/Notification.tscn")
 
 func _ready():
 	RNG.randomize()
-	add_item("gotyz", Types.PHONE, Vector2(-400, 0))
-	add_item("book", Types.BULB, Vector2(400, 0))
-	add_item("shower", Types.BUTTONS, Vector2(200, -500))
-	add_item("shower", Types.MAZE, Vector2(-200, -300))
 
 func _process(delta):
+	score_lost = lerp(score_lost, 0, delta * 0.05)
 	time_elapsed += delta
 	time_next -= delta
 	if time_next <= 0:
@@ -90,3 +94,22 @@ func increase_type(type):
 
 		if counter[type] == Global.items[type]["win_score"]:
 			show_achievement(Global.items[type]["win_achievement"])
+
+func lose_score(score):
+	score_lost += score
+	if score_lost > MAX_SCORE_LOST:
+		game_over()
+
+func game_over():
+	var gameover = over_screen.instance()
+	add_child(gameover)
+
+func _on_music_finished():
+	if score_lost >= MAX_SCORE_LOST / 3:
+		$Normal.stream = panic
+		$Minigame.stream = panicmg
+	else:
+		$Normal.stream = normal
+		$Minigame.stream = normalmg
+	$Normal.playing = true
+	$Minigame.playing = true

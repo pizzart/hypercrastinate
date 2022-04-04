@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://misc/mod_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://misc/HussarMilosc-lO6e.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://misc/code_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scripts/game_over.gd" type="Script" id=4]
+[ext_resource path="res://audio/sfx/jingle1.wav" type="AudioStream" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 2 )
+
+[node name="GameOver" type="CanvasLayer"]
+pause_mode = 2
+layer = 2
+
+[node name="GameOver" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+
+[node name="Panel" type="ColorRect" parent="GameOver"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.65098 )
+
+[node name="M" type="MarginContainer" parent="GameOver"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_top = 100
+
+[node name="V" type="VBoxContainer" parent="GameOver/M"]
+margin_top = 100.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="Label" type="Label" parent="GameOver/M/V"]
+margin_left = 802.0
+margin_right = 1117.0
+margin_bottom = 48.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 1 )
+text = "GAME OVER"
+align = 1
+
+[node name="Score" type="Label" parent="GameOver/M/V"]
+margin_left = 843.0
+margin_top = 52.0
+margin_right = 1077.0
+margin_bottom = 91.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 1 )
+text = "Your score: "
+
+[node name="Label3" type="Label" parent="GameOver/M/V"]
+margin_left = 619.0
+margin_top = 95.0
+margin_right = 1301.0
+margin_bottom = 123.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 3 )
+text = "You became a functioning member of society."
+align = 1
+
+[node name="Sound" type="AudioStreamPlayer" parent="GameOver"]
+stream = ExtResource( 5 )
+bus = "Sounds"

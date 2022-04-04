@@ -59,10 +59,10 @@ func _process(delta):
 			blink_counter = 0
 		if time_left < 5:
 			modulate.r = 4
-	else:
-		time_left -= delta
-		if time_left <= 0:
-			lose_item()
+
+	time_left -= delta
+	if time_left <= 0:
+		lose_item()
 
 func next_anim():
 	if not bg_anim == null:
@@ -119,6 +119,7 @@ func lose_item():
 	var particles = shatter.instance()
 	get_parent().add_child(particles)
 	particles.position = position
+	get_parent().lose_score(score)
 	queue_free()
 
 func _on_input(_viewport, event, _shape_index):
