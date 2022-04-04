@@ -2,18 +2,19 @@ class_name Bulb
 extends Item
 
 var grabbing: bool
+var grab_enabled: bool = true
 
 func _ready():
 	connect("area_entered", self, "_on_area_entered")
 	start_minigame()
 
 func _process(delta):
-	if not tutorial:
+	if not tutorial or not grab_enabled:
 		if minigaming:
 			position.y = clamp(position.y + delta * 300, -700, 540)
 		if position.y > 530:
 			lose_item()
-	if tutorial:
+	else:
 		if minigaming:
 			position.y = clamp(position.y + delta * 200, -700, 450)
 
@@ -34,7 +35,7 @@ func end_minigame():
 	.end_minigame()
 
 func _on_input(_viewport, event, _shape_index):
-	if minigaming:
+	if minigaming and grab_enabled:
 		if event.is_action_pressed("start_minigame"):
 			get_parent().get_node("Basket").appear()
 			get_parent().get_node("Normal").volume_db = -80

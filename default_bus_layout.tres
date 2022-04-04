@@ -5,6 +5,7 @@ resource_name = "LowPassFilter"
 cutoff_hz = 5000.0
 
 [resource]
+bus/0/mute = true
 bus/0/volume_db = -6.8523
 bus/0/effect/0/effect = SubResource( 1 )
 bus/0/effect/0/enabled = false

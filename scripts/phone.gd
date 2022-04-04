@@ -4,6 +4,7 @@ const MAXSIZE = 1
 var size = 0
 var grow_mult = 0.1
 var click_reduce = 0.15
+var click_enabled: bool = true
 var enough: bool
 
 func _ready():
@@ -11,10 +12,10 @@ func _ready():
 	score = 100
 
 func _process(delta):
-	size = clamp(size + delta * grow_mult, 0, 1)
+	size = clamp(size + delta * grow_mult, 0, 1.1)
 	spr.scale = Vector2(size, size)
 
-	if not tutorial:
+	if not tutorial or not click_enabled:
 		if size > MAXSIZE:
 			lose_item()
 	if size < click_reduce:
@@ -32,6 +33,7 @@ func end_minigame():
 
 func _on_Phone_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("start_minigame"):
-		if size > click_reduce:
-			size -= click_reduce
-		collected_score += 0
+		if click_enabled:
+			if size > click_reduce:
+				size -= click_reduce
+			collected_score += 0

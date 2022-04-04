@@ -6,9 +6,14 @@ var walker
 var size = 100
 var avoid = Vector2()
 var grabbing: bool
+var icon = preload("res://graphics/types/maze.png")
 
 func _ready():
 	score = 150
+
+func _draw():
+	if not minigaming:
+		draw_texture(icon, Vector2(-32, 70))
 
 func start_minigame():
 	maze = MazeMain.new()

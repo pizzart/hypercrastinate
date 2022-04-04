@@ -2,6 +2,7 @@ class_name Item
 extends Area2D
 
 signal done
+signal lost
 var collider: Shape2D
 var item_anim: String
 var score: int = 50
@@ -19,7 +20,6 @@ var type: String
 var tutorial: bool
 var notif = preload("res://scenes/DisappearText.tscn")
 var shatter = preload("res://scenes/ShatterParticles.tscn")
-var icon = preload("res://graphics/types/code.png")
 var RNG = RandomNumberGenerator.new()
 
 onready var spr = AnimatedSprite.new()
@@ -46,9 +46,6 @@ func _ready():
 		bg_anim.connect("animation_finished", self, "next_anim")
 		bg_anim.modulate = Color(0.3, 0.3, 0.3)
 
-func _draw():
-	if not minigaming:
-		draw_texture(icon, Vector2(-32, 70))
 
 func _process(delta):
 	if not minigaming:
@@ -116,6 +113,7 @@ func end_minigame():
 	minigaming = false
 
 func lose_item():
+	emit_signal("lost")
 	Global.play_sound("res://audio/sfx/loseitem.wav")
 	get_parent().get_node("Normal").volume_db = 0
 	get_parent().get_node("Minigame").volume_db = -80

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://misc/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://graphics/arrow.png" type="Texture" id=2]
 [ext_resource path="res://misc/HussarMilosc-lO6e.otf" type="DynamicFontData" id=3]
 [ext_resource path="res://scripts/interface.gd" type="Script" id=4]
 
@@ -41,13 +42,6 @@ margin_bottom = 1080.0
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Interface"]
-margin_left = 207.0
-margin_top = 133.0
-margin_right = 247.0
-margin_bottom = 173.0
-mouse_filter = 2
-
 [node name="OverBar" type="ProgressBar" parent="Interface"]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -60,3 +54,12 @@ custom_styles/fg = SubResource( 2 )
 custom_styles/bg = SubResource( 3 )
 max_value = 1000.0
 percent_visible = false
+
+[node name="Arrow" type="TextureRect" parent="Interface"]
+visible = false
+margin_left = 636.0
+margin_top = 104.0
+margin_right = 764.0
+margin_bottom = 232.0
+rect_rotation = 48.0
+texture = ExtResource( 2 )

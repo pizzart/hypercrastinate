@@ -3,10 +3,15 @@ extends Item
 
 var btn_main = preload("res://scenes/Buttons.tscn")
 var buttons
+var icon = preload("res://graphics/types/code.png")
 onready var cam = get_parent().get_node("Camera")
 
 func _ready():
 	score = 150
+
+func _draw():
+	if not minigaming:
+		draw_texture(icon, Vector2(-32, 70))
 
 func start_minigame():
 	buttons = btn_main.instance()
