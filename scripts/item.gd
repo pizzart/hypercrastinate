@@ -16,9 +16,10 @@ var global_notify_inst
 var col = CollisionShape2D.new()
 var dying = false
 var type: String
+var tutorial: bool
 var notif = preload("res://scenes/DisappearText.tscn")
 var shatter = preload("res://scenes/ShatterParticles.tscn")
-var icon = preload("res://graphics/code.png")
+var icon = preload("res://graphics/types/code.png")
 var RNG = RandomNumberGenerator.new()
 
 onready var spr = AnimatedSprite.new()
@@ -60,9 +61,10 @@ func _process(delta):
 		if time_left < 5:
 			modulate.r = 4
 
-	time_left -= delta
-	if time_left <= 0:
-		lose_item()
+	if not tutorial:
+		time_left -= delta
+		if time_left <= 0:
+			lose_item()
 
 func next_anim():
 	if not bg_anim == null:

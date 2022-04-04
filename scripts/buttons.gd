@@ -11,7 +11,6 @@ func _ready():
 func start_minigame():
 	buttons = btn_main.instance()
 	buttons.position += Vector2(-100, -40)
-	buttons.connect("win", self, "end_minigame")
 	add_child(buttons)
 	.start_minigame()
 

@@ -11,8 +11,6 @@ func _ready():
 	score = 150
 
 func start_minigame():
-	self_modulate.a = 0
-
 	maze = MazeMain.new()
 	maze.size = size
 	add_child(maze)
@@ -22,6 +20,8 @@ func start_minigame():
 	walker.add_child(col.duplicate())
 	walker.scale = Vector2(0.5, 0.5)
 	add_child(walker)
+
+	spr.hide()
 
 	#scale = Vector2(0.5, 0.5)
 	.start_minigame()

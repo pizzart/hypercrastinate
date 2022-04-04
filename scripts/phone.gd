@@ -11,14 +11,15 @@ func _ready():
 	score = 100
 
 func _process(delta):
-	size += delta * grow_mult
+	size = clamp(size + delta * grow_mult, 0, 1)
 	spr.scale = Vector2(size, size)
 
-	if size > MAXSIZE:
-		lose_item()
+	if not tutorial:
+		if size > MAXSIZE:
+			lose_item()
 	if size < click_reduce:
 		if not enough:
-			end_minigame()
+			emit_signal("done")
 
 	if size > 0.8:
 		modulate = Color.red

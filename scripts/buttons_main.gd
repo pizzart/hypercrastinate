@@ -1,6 +1,5 @@
 extends Node2D
 
-signal win
 var RNG = RandomNumberGenerator.new()
 var pressed: int = 0
 var texts = {
@@ -21,4 +20,4 @@ func _ready():
 
 func _on_text_changed(text: String):
 	if text.to_lower() == code:
-		emit_signal("win")
+		get_parent().emit_signal("done")

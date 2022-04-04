@@ -9,9 +9,10 @@ enum Types {
 }
 const MAX_SCORE_LOST = 1000
 var time_elapsed: float
-var time_next: float = 5
+var time_next: float = 1
 var score_lost: float
 var counter = {}
+var tutorial: bool
 # var item = preload("res://scripts/item.gd")
 var normal = preload("res://audio/mus/ingame1.wav")
 var normalmg = preload("res://audio/mus/ingame1mg.wav")
@@ -24,21 +25,18 @@ var RNG = RandomNumberGenerator.new()
 
 func _ready():
 	RNG.randomize()
-	var gotten = [2, Vector2()]
-	var type = gotten[0]
-	var pos = gotten[1]
-	add_item(Global.items.keys()[RNG.randi() % Global.items.keys().size()], type, pos)
 
 func _process(delta):
 	score_lost = lerp(score_lost, 0, delta * 0.05)
-	time_elapsed += delta
-	time_next -= delta
-	if time_next <= 0:
-		time_next = RNG.randf_range(7 / sqrt(time_elapsed), 10 / sqrt(time_elapsed))
-		var gotten = get_type()
-		var type = gotten[0]
-		var pos = gotten[1]
-		add_item(Global.items.keys()[RNG.randi() % Global.items.keys().size()], type, pos)
+	if not tutorial:
+		time_elapsed += delta
+		time_next -= delta
+		if time_next <= 0:
+			time_next = RNG.randf_range(7 / sqrt(time_elapsed), 10 / sqrt(time_elapsed))
+			var gotten = get_type()
+			var type = gotten[0]
+			var pos = gotten[1]
+			add_item(Global.items.keys()[RNG.randi() % Global.items.keys().size()], type, pos)
 
 func get_type():
 	var type

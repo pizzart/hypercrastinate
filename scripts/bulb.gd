@@ -8,10 +8,14 @@ func _ready():
 	start_minigame()
 
 func _process(delta):
-	if minigaming:
-		position.y += delta * 300
-	if position.y > 550:
-		lose_item()
+	if not tutorial:
+		if minigaming:
+			position.y = clamp(position.y + delta * 300, -700, 540)
+		if position.y > 530:
+			lose_item()
+	if tutorial:
+		if minigaming:
+			position.y = clamp(position.y + delta * 200, -700, 450)
 
 	if grabbing:
 		position.x = clamp(get_global_mouse_position().x, -1920/2, 1920/2)
