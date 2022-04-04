@@ -1,13 +1,13 @@
 class_name MazeMain
-extends Area2D
+extends StaticBody2D
 
 var size
 var preset = [
 	[2,0,0,0,1],
-	[1,1,1,0,0],
+	[0,1,1,0,1],
 	[0,0,0,1,0],
-	[0,1,0,0,0],
-	[3,1,1,0,0],
+	[0,1,1,0,0],
+	[0,0,0,0,3],
 ]
 var selected = []
 var basket = preload("res://graphics/basket.png")
@@ -40,12 +40,20 @@ func _draw():
 func create_maze():
 	for y in range(preset.size()):
 		for x in range(preset[y].size()):
-			if preset[y][x] == 1 or preset[y][x] == 3:
-				var col = CollisionShape2D.new()
-				col.shape = RectangleShape2D.new()
-				col.shape.extents.x = size / 2
-				col.shape.extents.y = size / 2
+			var col = CollisionShape2D.new()
+			col.shape = RectangleShape2D.new()
+			col.shape.extents.x = size / 2
+			col.shape.extents.y = size / 2
+			if preset[y][x] == 1:
 				col.position = Vector2(x * size, y * size)
-				if preset[y][x] == 3:
-					col.name = "End"
 				add_child(col)
+			elif preset[y][x] == 3:
+				var area = Area2D.new()
+				area.add_child(col)
+				area.position = Vector2(x * size, y * size)
+				area.connect("body_entered", self, "_on_body")
+				add_child(area)
+
+func _on_body(body):
+	if body is KinematicBody2D:
+		get_parent().emit_signal("done")

@@ -100,6 +100,7 @@ func notify(thistext):
 func end_minigame():
 	get_parent().get_node("Normal").volume_db = 0
 	get_parent().get_node("Minigame").volume_db = -80
+	get_parent().lose_score(-score / 2)
 	Global.score += score
 	Global.emit_signal("score_updated")
 	Global.play_sound("res://audio/sfx/mgdone.wav")

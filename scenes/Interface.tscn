@@ -55,6 +55,7 @@ margin_left = -265.0
 margin_top = 88.0
 margin_right = 266.0
 margin_bottom = 124.0
+mouse_filter = 2
 custom_styles/fg = SubResource( 2 )
 custom_styles/bg = SubResource( 3 )
 max_value = 1000.0

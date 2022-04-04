@@ -24,6 +24,10 @@ var RNG = RandomNumberGenerator.new()
 
 func _ready():
 	RNG.randomize()
+	var gotten = [2, Vector2()]
+	var type = gotten[0]
+	var pos = gotten[1]
+	add_item(Global.items.keys()[RNG.randi() % Global.items.keys().size()], type, pos)
 
 func _process(delta):
 	score_lost = lerp(score_lost, 0, delta * 0.05)
@@ -96,7 +100,7 @@ func increase_type(type):
 			show_achievement(Global.items[type]["win_achievement"])
 
 func lose_score(score):
-	score_lost += score
+	score_lost = max(score_lost + score, 0)
 	if score_lost > MAX_SCORE_LOST:
 		game_over()
 
