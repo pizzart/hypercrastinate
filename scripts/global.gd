@@ -13,7 +13,7 @@ var items = {
 		"texts": [
 			"I'll fix it later",
 			"Not a big issue",
-			"I'm too busy with games right now",
+			"To busy GAMING",
 			"My monitor has light anyways",
 			],
 	},
@@ -25,7 +25,7 @@ var items = {
 			"I'll read it tomorrow",
 			"Who needs them anyways?",
 			"It's so boring",
-			"I'd rather watch a movie",
+			"I'd rather watch Netfliks",
 			],
 	},
 	"shower": {
@@ -34,9 +34,9 @@ var items = {
 		"win_achievement": "grease",
 		"texts": [
 			"I'll do it in a few minutes",
-			"Who cares? I'm alone",
+			"Who cares?",
 			"Waste of time",
-			"I'm a gamer, I don't need showers",
+			"Gamers don't need showers",
 			],
 	},
 	"can": {
@@ -61,7 +61,7 @@ var items = {
 var achievements = {
 	"work": {
 		"title": "Successful career",
-		"text": "You got fired from your job!",
+		"text": "You got fired!",
 		"icon": "res://graphics/achievements/smart.png",
 	},
 	"stupid": {
@@ -80,7 +80,7 @@ var achievements = {
 		"icon": "res://graphics/achievements/dark.png",
 	},
 	"obese": {
-		"title": "Moderator",
+		"title": "Reddit Moderator",
 		"text": "You've gained 100 pounds!",
 		"icon": "res://graphics/achievements/fat.png",
 	},
