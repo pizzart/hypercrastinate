@@ -50,7 +50,7 @@ script = ExtResource( 5 )
 [node name="BG" type="AnimatedSprite" parent="."]
 z_index = -1
 frames = ExtResource( 4 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Fire" type="AnimatedSprite" parent="."]

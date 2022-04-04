@@ -60,32 +60,32 @@ var achievements = {
 	"work": {
 		"title": "Successful career",
 		"text": "You got fired from your job!",
-		"icon": "res://misc/gotyz.png",
+		"icon": "res://graphics/achievements/smart.png",
 	},
 	"stupid": {
 		"title": "Smarty pants",
 		"text": "You've got a single braincell left!",
-		"icon": "res://misc/gotyz.png",
+		"icon": "res://graphics/achievements/smart.png",
 	},
 	"grease": {
 		"title": "Stinky",
 		"text": "You haven't showered in 2 weeks!",
-		"icon": "res://misc/gotyz.png",
+		"icon": "res://graphics/achievements/stink.png",
 	},
 	"darkness": {
 		"title": "Dark cave",
 		"text": "You're living in darkness!",
-		"icon": "res://misc/gotyz.png",
+		"icon": "res://graphics/achievements/dark.png",
 	},
 	"obese": {
 		"title": "Moderator",
 		"text": "You've gained 100 pounds!",
-		"icon": "res://misc/gotyz.png",
+		"icon": "res://graphics/achievements/fat.png",
 	},
 	"stock": {
 		"title": "I'll take your entire stock",
 		"text": "You've got some stock!",
-		"icon": "res://misc/gotyz.png",
+		"icon": "res://graphics/achievements/stock.png",
 	},
 }
 

@@ -7,10 +7,10 @@ onready var icon = get_node("HBox/Icon")
 func _ready():
 	pass
 
-func init_notif(title_in, text_in):
+func init_notif(title_in, text_in, icon_in):
 	title.text = title_in 
 	text.text = text_in 
-#	icon.texture.load_path = icon_in
+	icon.texture = load(icon_in)
 
 func _on_Timer_timeout():
 	queue_free()
