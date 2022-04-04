@@ -19,15 +19,18 @@ var normalmg = preload("res://audio/mus/ingame1mg.wav")
 var panic = preload("res://audio/mus/panic.wav")
 var panicmg = preload("res://audio/mus/panicmg.wav")
 var phone = preload("res://scenes/Phone.tscn")
+var tut = preload("res://scenes/Tutorial.tscn")
 var over_screen = preload("res://scenes/GameOver.tscn")
 var bottom_notification = preload("res://scenes/Notification.tscn")
 var RNG = RandomNumberGenerator.new()
 
 func _ready():
 	RNG.randomize()
+	if not Global.load_conf("game", "tut_done", false):
+		add_child(tut.instance())
 
 func _process(delta):
-	score_lost = lerp(score_lost, 0, delta * 0.05)
+	score_lost -= delta * 30
 	if not tutorial:
 		time_elapsed += delta
 		time_next -= delta

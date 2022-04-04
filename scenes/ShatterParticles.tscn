@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/particles.gd" type="Script" id=1]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.526709, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -5.20082, 0.0, 0, 0 ]
@@ -17,10 +19,11 @@ orbit_velocity_random = 0.0
 scale = 10.0
 scale_curve = SubResource( 2 )
 
-[node name="Particles2D" type="Particles2D"]
+[node name="Shatter" type="Particles2D"]
 amount = 40
 lifetime = 4.0
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
 process_material = SubResource( 3 )
+script = ExtResource( 1 )

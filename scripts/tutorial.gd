@@ -48,6 +48,7 @@ func _ready():
 
 	get_parent().tutorial = false
 	AudioServer.set_bus_effect_enabled(0, 0, false)
+	Global.save_conf("game", "tut_done", true)
 
 func add_tut_item(icon, type, pos, tut_text, interact_enabled = true):
 	var item = add_item(icon, type, pos)

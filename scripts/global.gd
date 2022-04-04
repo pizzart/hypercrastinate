@@ -96,3 +96,15 @@ func play_sound(path: String):
 	player.autoplay = true
 	player.bus = "Sounds"
 	add_child(player)
+
+func save_conf(section, key, val):
+	var config = ConfigFile.new()
+	config.set_value(section, key, val)
+	config.save("user://swgame-ld50.cfg")
+
+func load_conf(section, key, default):
+	var config = ConfigFile.new()
+	var err = config.load("user://swgame-ld50.cfg")
+	if err != OK:
+		return 0
+	return config.get_value(section, key, default)
