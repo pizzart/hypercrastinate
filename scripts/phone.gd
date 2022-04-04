@@ -6,10 +6,18 @@ var grow_mult = 0.1
 var click_reduce = 0.15
 var click_enabled: bool = true
 var enough: bool
+onready var bg_anim = get_node("BG")
 
 func _ready():
 	size = 0.5
 	score = 100
+
+	bg_anim.frame = 0
+	bg_anim.playing = true
+
+	bg_anim.animation = "appear"
+	bg_anim.connect("animation_finished", self, "next_anim")
+	bg_anim.modulate = Color(0.3, 0.3, 0.3)
 
 func _process(delta):
 	size = clamp(size + delta * grow_mult, 0, 1.1)
@@ -27,8 +35,14 @@ func _process(delta):
 	if size < 0.7:
 		modulate = Color.white
 
+func next_anim():
+	if bg_anim.animation != "default":
+		bg_anim.animation = "default"
+	.next_anim()
+
 func end_minigame():
 	enough = true
+	bg_anim.animation = "disappear"
 	.end_minigame()
 
 func _on_Phone_input_event(viewport, event, shape_idx):

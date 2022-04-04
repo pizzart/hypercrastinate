@@ -1,8 +1,8 @@
 extends Control
 
 func _ready():
-	$CanvasLayer/Margin/H/V/Music/Slider.value = Global.mus_vol
-	$CanvasLayer/Margin/H/V/Sounds/Slider.value = Global.sfx_vol
+	$CanvasLayer/Margin/H/V/H/Sliders/Music.value = Global.mus_vol
+	$CanvasLayer/Margin/H/V/H/Sliders/Sounds.value = Global.sfx_vol
 	Pause.disabled = true
 
 func _on_started():

@@ -22,7 +22,6 @@ var notif = preload("res://scenes/DisappearText.tscn")
 var shatter = preload("res://scenes/ShatterParticles.tscn")
 
 onready var spr = AnimatedSprite.new()
-onready var bg_anim = get_node("BG")
 
 func _ready():
 	connect("input_event", self, "_on_input")
@@ -35,15 +34,6 @@ func _ready():
 	spr.animation = "appear"
 	spr.connect("animation_finished", self, "next_anim")
 	add_child(spr)
-
-	if not bg_anim == null:
-		bg_anim.frame = 0
-		bg_anim.playing = true
-
-		bg_anim.animation = "appear"
-		bg_anim.connect("animation_finished", self, "next_anim")
-		bg_anim.modulate = Color(0.3, 0.3, 0.3)
-
 
 func _process(delta):
 	if not minigaming:
@@ -62,9 +52,6 @@ func _process(delta):
 			lose_item()
 
 func next_anim():
-	if not bg_anim == null:
-		if bg_anim.animation != "default":
-			bg_anim.animation = "default"
 	if spr.animation != "default":
 		spr.animation = "default"
 	if dying:
@@ -106,8 +93,6 @@ func end_minigame():
 	rand_notif()
 	spr.animation = "disappear"
 	dying = true
-	if not bg_anim == null:
-		bg_anim.animation = "disappear"
 	minigaming = false
 
 func lose_item():

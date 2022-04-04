@@ -27,8 +27,9 @@ var bottom_notification = preload("res://scenes/Notification.tscn")
 
 func _ready():
 	Pause.disabled = false
-	if not Global.load_conf("game", "tut_done", false):
+	if not Global.load_conf("game", "tut_done", false) or Global.try_tutorial:
 		add_child(tut.instance())
+		Global.try_tutorial = false
 
 func _process(delta):
 	score_lost = max(score_lost - delta * 30, 0)
@@ -126,7 +127,7 @@ func game_over():
 	add_child(gameover)
 
 func _on_music_finished():
-	if Global.score >= 9000:
+	if Global.score >= 5000:
 		$Normal.stream = panic
 		$Minigame.stream = panicmg
 	else:

@@ -3,7 +3,7 @@ extends Item
 
 var timing_spr
 var perfect_size: float = 1
-var time_range: float = 0.2
+var time_range: float = 0.3
 var size: float
 var icon = preload("res://graphics/types/timing.png")
 

@@ -51,6 +51,7 @@ func _ready():
 	add_tut_item("shower", Types.MAZE, Vector2(0, -200), "and once it's full, you can't delay work any longer")
 	yield(self, "tut_item_done")
 
+	Global.score = 0
 	get_parent().tutorial = false
 	AudioServer.set_bus_effect_enabled(0, 0, false)
 	Global.save_conf("game", "tut_done", true)

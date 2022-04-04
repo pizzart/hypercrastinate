@@ -22,3 +22,19 @@ func _ready():
 func _process(delta):
 	if moving:
 		rect_position = rect_position.linear_interpolate(Vector2(0, 0), delta * 5)
+
+func _on_back():
+	Global.score = 0
+	get_tree().paused = false
+	get_tree().change_scene("res://scenes/Menu.tscn")
+
+func _on_again():
+	Global.score = 0
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
+func _on_again_tutorial():
+	Global.score = 0
+	get_tree().paused = false
+	Global.try_tutorial = true
+	get_tree().reload_current_scene()

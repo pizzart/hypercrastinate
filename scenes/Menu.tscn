@@ -49,7 +49,7 @@ color = Color( 0, 0, 0, 0.47451 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="CanvasLayer"]
 frames = ExtResource( 8 )
-frame = 21
+frame = 65
 playing = true
 centered = false
 
@@ -93,49 +93,54 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 2 )
 text = "Go back to life"
 
-[node name="Music" type="HBoxContainer" parent="CanvasLayer/Margin/H/V"]
+[node name="H" type="HBoxContainer" parent="CanvasLayer/Margin/H/V"]
 margin_top = 204.0
-margin_right = 800.0
-margin_bottom = 251.0
-custom_constants/separation = 10
-
-[node name="Label" type="Label" parent="CanvasLayer/Margin/H/V/Music"]
-margin_right = 91.0
-margin_bottom = 47.0
-custom_fonts/font = SubResource( 5 )
-text = "Music"
-
-[node name="Slider" type="HSlider" parent="CanvasLayer/Margin/H/V/Music"]
-margin_left = 101.0
-margin_top = 9.0
-margin_right = 800.0
-margin_bottom = 37.0
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme = ExtResource( 1 )
-max_value = 1.0
-step = 0.01
-value = 0.25
-
-[node name="Sounds" type="HBoxContainer" parent="CanvasLayer/Margin/H/V"]
-margin_top = 261.0
 margin_right = 800.0
 margin_bottom = 308.0
 custom_constants/separation = 10
 
-[node name="Label" type="Label" parent="CanvasLayer/Margin/H/V/Sounds"]
+[node name="Labels" type="VBoxContainer" parent="CanvasLayer/Margin/H/V/H"]
+margin_right = 104.0
+margin_bottom = 104.0
+custom_constants/separation = 10
+
+[node name="Label2" type="Label" parent="CanvasLayer/Margin/H/V/H/Labels"]
 margin_right = 104.0
 margin_bottom = 47.0
 custom_fonts/font = SubResource( 5 )
 text = "Sounds"
 
-[node name="Slider" type="HSlider" parent="CanvasLayer/Margin/H/V/Sounds"]
+[node name="Label" type="Label" parent="CanvasLayer/Margin/H/V/H/Labels"]
+margin_top = 57.0
+margin_right = 104.0
+margin_bottom = 104.0
+custom_fonts/font = SubResource( 5 )
+text = "Music"
+
+[node name="Sliders" type="VBoxContainer" parent="CanvasLayer/Margin/H/V/H"]
 margin_left = 114.0
-margin_top = 9.0
 margin_right = 800.0
-margin_bottom = 37.0
+margin_bottom = 104.0
 size_flags_horizontal = 3
-size_flags_vertical = 4
+custom_constants/separation = 0
+
+[node name="Music" type="HSlider" parent="CanvasLayer/Margin/H/V/H/Sliders"]
+margin_top = 12.0
+margin_right = 686.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 1 )
+max_value = 1.0
+step = 0.01
+value = 0.25
+
+[node name="Sounds" type="HSlider" parent="CanvasLayer/Margin/H/V/H/Sliders"]
+margin_top = 64.0
+margin_right = 686.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
 theme = ExtResource( 1 )
 max_value = 1.0
 step = 0.01
@@ -152,7 +157,7 @@ script = ExtResource( 12 )
 
 [connection signal="pressed" from="CanvasLayer/Margin/H/V/Start" to="." method="_on_started"]
 [connection signal="pressed" from="CanvasLayer/Margin/H/V/Exit" to="." method="_on_exited"]
-[connection signal="gui_input" from="CanvasLayer/Margin/H/V/Music/Slider" to="." method="_on_music_input"]
-[connection signal="value_changed" from="CanvasLayer/Margin/H/V/Music/Slider" to="." method="_on_music_changed"]
-[connection signal="gui_input" from="CanvasLayer/Margin/H/V/Sounds/Slider" to="." method="_on_sound_input"]
-[connection signal="value_changed" from="CanvasLayer/Margin/H/V/Sounds/Slider" to="." method="_on_sound_changed"]
+[connection signal="gui_input" from="CanvasLayer/Margin/H/V/H/Sliders/Music" to="." method="_on_music_input"]
+[connection signal="value_changed" from="CanvasLayer/Margin/H/V/H/Sliders/Music" to="." method="_on_music_changed"]
+[connection signal="gui_input" from="CanvasLayer/Margin/H/V/H/Sliders/Sounds" to="." method="_on_sound_input"]
+[connection signal="value_changed" from="CanvasLayer/Margin/H/V/H/Sliders/Sounds" to="." method="_on_sound_changed"]

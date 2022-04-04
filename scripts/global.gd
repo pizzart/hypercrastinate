@@ -4,6 +4,7 @@ signal score_updated
 var score: int
 var mus_vol: float
 var sfx_vol: float
+var try_tutorial: bool
 var RNG = RandomNumberGenerator.new()
 
 var items = {
@@ -46,6 +47,7 @@ var items = {
 		"win_achievement": "obese",
 		"texts": [
 			"A nice boost",
+			"Soft and refreshing",
 			],
 	},
 	"shirt": {
@@ -81,13 +83,13 @@ var achievements = {
 		"icon": "res://graphics/achievements/dark.png",
 	},
 	"obese": {
-		"title": "Reddit Moderator",
+		"title": "Rebbit Moderator",
 		"text": "You've gained 100 pounds!",
 		"icon": "res://graphics/achievements/fat.png",
 	},
 	"stock": {
 		"title": "I'll take your entire stock",
-		"text": "You've got some stock!",
+		"text": "Your bedroom is now a storage!",
 		"icon": "res://graphics/achievements/stock.png",
 	},
 }
