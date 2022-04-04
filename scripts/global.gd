@@ -95,8 +95,8 @@ var achievements = {
 func _ready():
 	RNG.randomize()
 	connect("tree_exiting", self, "_on_tree_exiting")
-	mus_vol = load_conf("volume", "music", 0.5)
-	sfx_vol = load_conf("volume", "sound", 0.5)
+	mus_vol = load_conf("volume", "music", 0.25)
+	sfx_vol = load_conf("volume", "sound", 0.25)
 	AudioServer.set_bus_volume_db(1, linear2db(mus_vol))
 	AudioServer.set_bus_volume_db(2, linear2db(sfx_vol))
 
@@ -110,13 +110,13 @@ func play_sound(path: String):
 
 func save_conf(section, key, val):
 	var config = ConfigFile.new()
-	config.load("user://swgame-ld50.cfg")
+	config.load("user://hyper.cfg")
 	config.set_value(section, key, val)
-	config.save("user://swgame-ld50.cfg")
+	config.save("user://hyper.cfg")
 
 func load_conf(section, key, default):
 	var config = ConfigFile.new()
-	var err = config.load("user://swgame-ld50.cfg")
+	var err = config.load("user://hyper.cfg")
 	if err != OK:
 		return 0
 	return config.get_value(section, key, default)

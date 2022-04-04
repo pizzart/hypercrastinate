@@ -14,6 +14,7 @@ func _on_back():
 		get_tree().paused = false
 		$Control.visible = false
 		$Control/Sure.visible = false
+		AudioServer.set_bus_effect_enabled(0, 0, false)
 		get_tree().change_scene("res://scenes/Menu.tscn")
 	else:
 		$Control/Sure.visible = true

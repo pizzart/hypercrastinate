@@ -9,6 +9,7 @@ var icon = preload("res://graphics/types/timing.png")
 
 func _ready():
 	perfect_size = Global.RNG.randf_range(0.8, 1.2)
+	score = 200
 
 func _draw():
 	if not minigaming:

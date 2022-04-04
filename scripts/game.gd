@@ -29,7 +29,6 @@ func _ready():
 	Pause.disabled = false
 	if not Global.load_conf("game", "tut_done", false):
 		add_child(tut.instance())
-	add_item("shirt", Types.MAZE, Vector2())
 
 func _process(delta):
 	score_lost = max(score_lost - delta * 30, 0)

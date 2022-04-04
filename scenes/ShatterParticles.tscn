@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/particles.gd" type="Script" id=1]
+[ext_resource path="res://graphics/particle.png" type="Texture" id=2]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.526709, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -5.20082, 0.0, 0, 0 ]
@@ -9,6 +10,8 @@ _data = [ Vector2( 0.526709, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -5.20082, 0.0
 curve = SubResource( 1 )
 
 [sub_resource type="ParticlesMaterial" id=3]
+flag_align_y = true
+flag_rotate_y = true
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 98, 0 )
@@ -16,7 +19,6 @@ initial_velocity = 110.23
 initial_velocity_random = 0.87
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 10.0
 scale_curve = SubResource( 2 )
 
 [node name="Shatter" type="Particles2D"]
@@ -26,4 +28,5 @@ one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
 process_material = SubResource( 3 )
+texture = ExtResource( 2 )
 script = ExtResource( 1 )
