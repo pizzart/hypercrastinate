@@ -2,7 +2,7 @@
 
 [ext_resource path="res://misc/Theme.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/notification.gd" type="Script" id=2]
-[ext_resource path="res://misc/gotyz.png" type="Texture" id=3]
+[ext_resource path="res://graphics/achievements/stock.png" type="Texture" id=3]
 [ext_resource path="res://misc/HussarMiloscOblique-n3lJ.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://misc/small_font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://misc/mod_font.tres" type="DynamicFont" id=6]
@@ -69,8 +69,8 @@ custom_fonts/normal_font = ExtResource( 6 )
 bbcode_enabled = true
 bbcode_text = "[shake rate=10 level=3] Cool
 [/shake] "
-text = "[shake rate=10 level=3] Cool
-[/shake] "
+text = " Cool
+ "
 scroll_active = false
 
 [node name="Text" type="RichTextLabel" parent="HBox/VBox"]
@@ -83,7 +83,7 @@ size_flags_vertical = 3
 custom_fonts/normal_font = ExtResource( 5 )
 bbcode_enabled = true
 bbcode_text = "[shake rate=10 level=3]asd[/shake] "
-text = "[shake rate=10 level=3]asd[/shake] "
+text = "asd "
 scroll_active = false
 
 [node name="Timer" type="Timer" parent="."]

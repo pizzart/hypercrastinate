@@ -3,7 +3,7 @@
 [ext_resource path="res://misc/Theme.tres" type="Theme" id=1]
 [ext_resource path="res://misc/menu_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scripts/menu.gd" type="Script" id=3]
-[ext_resource path="res://audio/mus/title.wav" type="AudioStream" id=4]
+[ext_resource path="res://audio/mus/title.ogg" type="AudioStream" id=4]
 [ext_resource path="res://scenes/BG.tscn" type="PackedScene" id=5]
 [ext_resource path="res://misc/PermanentMarker-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://graphics/Title.tres" type="SpriteFrames" id=8]
@@ -49,7 +49,7 @@ color = Color( 0, 0, 0, 0.47451 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="CanvasLayer"]
 frames = ExtResource( 8 )
-frame = 65
+frame = 61
 playing = true
 centered = false
 
@@ -104,18 +104,18 @@ margin_right = 104.0
 margin_bottom = 104.0
 custom_constants/separation = 10
 
-[node name="Label2" type="Label" parent="CanvasLayer/Margin/H/V/H/Labels"]
+[node name="Label" type="Label" parent="CanvasLayer/Margin/H/V/H/Labels"]
 margin_right = 104.0
 margin_bottom = 47.0
 custom_fonts/font = SubResource( 5 )
-text = "Sounds"
+text = "Music"
 
-[node name="Label" type="Label" parent="CanvasLayer/Margin/H/V/H/Labels"]
+[node name="Label2" type="Label" parent="CanvasLayer/Margin/H/V/H/Labels"]
 margin_top = 57.0
 margin_right = 104.0
 margin_bottom = 104.0
 custom_fonts/font = SubResource( 5 )
-text = "Music"
+text = "Sounds"
 
 [node name="Sliders" type="VBoxContainer" parent="CanvasLayer/Margin/H/V/H"]
 margin_left = 114.0

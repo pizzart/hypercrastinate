@@ -6,6 +6,7 @@ var grow_mult = 0.1
 var click_reduce = 0.15
 var click_enabled: bool = true
 var enough: bool
+var cookie = preload("res://scenes/CookieParticles.tscn")
 onready var bg_anim = get_node("BG")
 
 func _ready():
@@ -49,6 +50,9 @@ func _on_Phone_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("start_minigame"):
 		if click_enabled and not dying:
 			Global.play_sound("res://audio/sfx/click.wav")
+			var cookie_inst = cookie.instance()
+			get_parent().add_child(cookie_inst)
+			cookie_inst.position = position
 			if size > click_reduce:
 				size -= click_reduce
 			collected_score += 0

@@ -16,10 +16,10 @@ var score_lost: float
 var counter = {}
 var tutorial: bool
 # var item = preload("res://scripts/item.gd")
-var normal = preload("res://audio/mus/ingame1.wav")
-var normalmg = preload("res://audio/mus/ingame1mg.wav")
-var panic = preload("res://audio/mus/panic.wav")
-var panicmg = preload("res://audio/mus/panicmg.wav")
+var normal = preload("res://audio/mus/ingame.ogg")
+var normalmg = preload("res://audio/mus/ingamemg.ogg")
+var panic = preload("res://audio/mus/panic.ogg")
+var panicmg = preload("res://audio/mus/panicmg.ogg")
 var phone = preload("res://scenes/Phone.tscn")
 var tut = preload("res://scenes/Tutorial.tscn")
 var over_screen = preload("res://scenes/GameOver.tscn")
@@ -123,6 +123,8 @@ func lose_score(score):
 		game_over()
 
 func game_over():
+	$Normal.volume_db = -80
+	$Minigame.volume_db = -80
 	var gameover = over_screen.instance()
 	add_child(gameover)
 

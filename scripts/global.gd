@@ -69,7 +69,7 @@ var achievements = {
 	},
 	"stupid": {
 		"title": "Smarty pants",
-		"text": "You've got a single braincell left!",
+		"text": "You're evolving, just backwards",
 		"icon": "res://graphics/achievements/smart.png",
 	},
 	"grease": {
@@ -79,7 +79,7 @@ var achievements = {
 	},
 	"darkness": {
 		"title": "Dark cave",
-		"text": "You're living in darkness!",
+		"text": "You're living in total darkness!",
 		"icon": "res://graphics/achievements/dark.png",
 	},
 	"obese": {
@@ -89,7 +89,7 @@ var achievements = {
 	},
 	"stock": {
 		"title": "I'll take your entire stock",
-		"text": "Your bedroom is now a storage!",
+		"text": "Your bedroom is now a t-shirt storage!",
 		"icon": "res://graphics/achievements/stock.png",
 	},
 }

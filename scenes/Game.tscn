@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://audio/mus/ingame1.wav" type="AudioStream" id=1]
-[ext_resource path="res://audio/mus/ingame1mg.wav" type="AudioStream" id=2]
+[ext_resource path="res://audio/mus/ingamemg.ogg" type="AudioStream" id=1]
+[ext_resource path="res://audio/mus/ingame.ogg" type="AudioStream" id=2]
 [ext_resource path="res://scenes/Interface.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/BG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/camera.gd" type="Script" id=5]
@@ -40,12 +40,12 @@ rotation = 0.551469
 [node name="Interface" parent="." instance=ExtResource( 3 )]
 
 [node name="Normal" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
+stream = ExtResource( 2 )
 autoplay = true
 bus = "Music"
 
 [node name="Minigame" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
+stream = ExtResource( 1 )
 volume_db = -80.0
 autoplay = true
 bus = "Music"

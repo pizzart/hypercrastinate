@@ -28,11 +28,9 @@ func _process(delta):
 				emit_signal("done")
 		else:
 			spr.modulate = Color(1, 1, 1, 0.5)
-			if Input.is_action_just_pressed("time"):
-				lose_item()
-		if size > perfect_size + time_range:
 			if not tutorial:
-				lose_item()
+				if Input.is_action_just_pressed("time"):
+					lose_item()
 
 func start_minigame():
 	Global.play_sound("res://audio/sfx/click.wav")

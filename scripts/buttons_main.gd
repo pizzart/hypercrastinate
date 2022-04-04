@@ -21,3 +21,4 @@ func _ready():
 func _on_text_changed(text: String):
 	if text.to_lower() == code:
 		get_parent().emit_signal("done")
+		$Sprite/Replace.editable = false
