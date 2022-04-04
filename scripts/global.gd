@@ -99,6 +99,7 @@ func play_sound(path: String):
 
 func save_conf(section, key, val):
 	var config = ConfigFile.new()
+	config.load("user://swgame-ld50.cfg")
 	config.set_value(section, key, val)
 	config.save("user://swgame-ld50.cfg")
 

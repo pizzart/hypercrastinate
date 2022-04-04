@@ -28,7 +28,7 @@ motion_scale = Vector2( 0.5, 0.5 )
 [node name="BG" type="AnimatedSprite" parent="BGLayer"]
 z_index = -1
 frames = ExtResource( 1 )
-frame = 8
+frame = 7
 playing = true
 
 [node name="Add1" type="Sprite" parent="BGLayer"]

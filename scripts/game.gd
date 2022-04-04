@@ -25,6 +25,7 @@ var bottom_notification = preload("res://scenes/Notification.tscn")
 var RNG = RandomNumberGenerator.new()
 
 func _ready():
+	Pause.disabled = false
 	RNG.randomize()
 	if not Global.load_conf("game", "tut_done", false):
 		add_child(tut.instance())

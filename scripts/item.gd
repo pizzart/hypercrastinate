@@ -35,6 +35,7 @@ func _ready():
 	add_child(col)
 	spr.playing = true
 	spr.frames = load(item_anim)
+	spr.animation = "appear"
 	spr.connect("animation_finished", self, "next_anim")
 	add_child(spr)
 

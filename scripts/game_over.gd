@@ -3,8 +3,10 @@ extends Control
 var moving: bool
 
 func _ready():
+	Pause.disabled = true
 	rect_position.y = -1080
 	get_tree().paused = true
+
 	$M/V/Score.text = "Your score: %s" % Global.score
 	var prev_score = Global.load_conf("game", "highscore", 0)
 	if Global.score > prev_score:
@@ -12,6 +14,7 @@ func _ready():
 		Global.save_conf("game", "highscore", Global.score)
 	else:
 		$M/V/Beaten.text = "You did not beat your high score: %s" % prev_score
+
 	yield(get_tree().create_timer(0.5), "timeout")
 	$Sound.play()
 	moving = true
