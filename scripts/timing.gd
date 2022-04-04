@@ -16,7 +16,10 @@ func _draw():
 
 func _process(delta):
 	if minigaming:
-		size = clamp(size + delta, 0, perfect_size + time_range + 0.1)
+		if not tutorial:
+			size = clamp(size + delta, 0, perfect_size + time_range + 0.1)
+		else:
+			size = clamp(size + delta, 0, perfect_size)
 		timing_spr.scale = Vector2(size, size)
 		if size > perfect_size - time_range and size < perfect_size + time_range:
 			spr.modulate = Color(4, 4, 1, 1)
