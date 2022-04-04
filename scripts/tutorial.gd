@@ -6,6 +6,7 @@ enum Types {
 	BULB,
 	MAZE,
 	BUTTONS,
+	TIMING,
 }
 var phone = preload("res://scenes/Phone.tscn")
 var tut = preload("res://scenes/TutorialText.tscn")
@@ -32,6 +33,10 @@ func _ready():
 	yield(self, "tut_item_done")
 	yield(get_tree().create_timer(1.0), "timeout")
 
+	add_tut_item("can", Types.TIMING, Vector2(0, -200), "press spacebar when the item is big enough")
+	yield(self, "tut_item_done")
+	yield(get_tree().create_timer(1.0), "timeout")
+
 	add_tut_item("shirt", Types.PHONE, Vector2(0, -200), "every item disappears after some time", false)
 	yield(self, "tut_item_done")
 
@@ -39,7 +44,7 @@ func _ready():
 	add_tut_item("book", Types.BULB, Vector2(0, -600), "don't lose them", false)
 	yield(self, "tut_item_done")
 
-	add_tut_item("book", Types.PHONE, Vector2(0, -200), "because the bar fills up if you do")
+	add_tut_item("book", Types.TIMING, Vector2(0, -200), "because the bar fills up if you do")
 	yield(self, "tut_item_done")
 
 	get_parent().get_node("Interface/Interface/Arrow").hide()
@@ -82,9 +87,13 @@ func add_item(itemname, type, pos):
 		Types.BUTTONS:
 			new_item = Buttons.new()
 			new_item.collider = shape
+		Types.TIMING:
+			new_item = Timing.new()
+			new_item.collider = shape
 		_:
 			new_item = Bulb.new()
 			new_item.collider = shape
+
 	new_item.texts = Global.items[itemname]["texts"]
 	new_item.item_anim = Global.items[itemname]["icon"]
 	new_item.position = pos

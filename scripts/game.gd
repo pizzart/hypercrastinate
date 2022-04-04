@@ -6,8 +6,10 @@ enum Types {
 	BULB,
 	MAZE,
 	BUTTONS,
+	TIMING,
 }
 const MAX_SCORE_LOST = 1000
+var type_chances = [0.3, 0.6, 0.8, 0.9, 1]
 var time_elapsed: float
 var time_next: float = 1
 var score_lost: float
@@ -22,13 +24,12 @@ var phone = preload("res://scenes/Phone.tscn")
 var tut = preload("res://scenes/Tutorial.tscn")
 var over_screen = preload("res://scenes/GameOver.tscn")
 var bottom_notification = preload("res://scenes/Notification.tscn")
-var RNG = RandomNumberGenerator.new()
 
 func _ready():
 	Pause.disabled = false
-	RNG.randomize()
 	if not Global.load_conf("game", "tut_done", false):
 		add_child(tut.instance())
+	add_item("shirt", Types.MAZE, Vector2())
 
 func _process(delta):
 	score_lost = max(score_lost - delta * 30, 0)
@@ -36,11 +37,11 @@ func _process(delta):
 		time_elapsed += delta
 		time_next -= delta
 		if time_next <= 0:
-			time_next = RNG.randf_range(7 / sqrt(time_elapsed), 10 / sqrt(time_elapsed))
+			time_next = Global.RNG.randf_range(7 / sqrt(time_elapsed), 10 / sqrt(time_elapsed))
 			var gotten = get_type()
 			var type = gotten[0]
 			var pos = gotten[1]
-			add_item(Global.items.keys()[RNG.randi() % Global.items.keys().size()], type, pos)
+			add_item(Global.items.keys()[Global.RNG.randi() % Global.items.keys().size()], type, pos)
 
 	if Global.score <= 5000:
 		$BG/BGLayer/Add1.modulate.a = float(Global.score) / 5000
@@ -54,19 +55,22 @@ func _process(delta):
 func get_type():
 	var type
 	var pos
-	var chance = RNG.randf()
-	if chance < 0.35:
+	var chance = Global.RNG.randf()
+	if chance < type_chances[0]:
 		type = Types.PHONE
-		pos = Vector2(RNG.randf_range(-900, 900), RNG.randf_range(-500, 500))
-	elif chance >= 0.35 and chance < 0.7:
+		pos = Vector2(Global.RNG.randf_range(-850, 850), Global.RNG.randf_range(-500, 450))
+	elif chance >= type_chances[0] and chance < type_chances[1]:
 		type = Types.BULB
-		pos = Vector2(RNG.randf_range(-900, 900), RNG.randf_range(-1000, -700))
-	elif chance >= 0.7 and chance < 0.9:
+		pos = Vector2(Global.RNG.randf_range(-850, 850), Global.RNG.randf_range(-1000, -700))
+	elif chance >= type_chances[1] and chance < type_chances[2]:
 		type = Types.MAZE
-		pos = Vector2(RNG.randf_range(-900, 400), RNG.randf_range(-500, 0))
-	elif chance >= 0.9 and chance <= 1:
+		pos = Vector2(Global.RNG.randf_range(-900, 400), Global.RNG.randf_range(-500, 0))
+	elif chance >= type_chances[2] and chance < type_chances[3]:
 		type = Types.BUTTONS
-		pos = Vector2(RNG.randf_range(-800, 700), RNG.randf_range(-400, 300))
+		pos = Vector2(Global.RNG.randf_range(-800, 700), Global.RNG.randf_range(-400, 300))
+	elif chance >= type_chances[3] and chance <= type_chances[4]:
+		type = Types.TIMING
+		pos = Vector2(Global.RNG.randf_range(-850, 850), Global.RNG.randf_range(-500, 450))
 	return [type, pos]
 
 func show_achievement(inter_name: String):
@@ -90,6 +94,9 @@ func add_item(itemname, type, pos):
 			new_item.collider = shape
 		Types.BUTTONS:
 			new_item = Buttons.new()
+			new_item.collider = shape
+		Types.TIMING:
+			new_item = Timing.new()
 			new_item.collider = shape
 		_:
 			new_item = Bulb.new()

@@ -20,14 +20,11 @@ var type: String
 var tutorial: bool
 var notif = preload("res://scenes/DisappearText.tscn")
 var shatter = preload("res://scenes/ShatterParticles.tscn")
-var RNG = RandomNumberGenerator.new()
 
 onready var spr = AnimatedSprite.new()
 onready var bg_anim = get_node("BG")
 
 func _ready():
-	RNG.randomize()
-
 	connect("input_event", self, "_on_input")
 	connect("done", self, "end_minigame")
 	input_pickable = true
@@ -59,7 +56,7 @@ func _process(delta):
 		if time_left < 5:
 			modulate.r = 4
 
-	if not tutorial:
+	if not tutorial and not dying:
 		time_left -= delta
 		if time_left <= 0:
 			lose_item()
@@ -86,7 +83,7 @@ func rand_notif():
 	if texts.size() == 0:
 		notify(text)
 	else:
-		notify(texts[RNG.randi_range(0, texts.size()-1)])
+		notify(texts[Global.RNG.randi_range(0, texts.size()-1)])
 
 func notify(thistext):
 	if is_instance_valid(global_notify_inst):
