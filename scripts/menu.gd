@@ -1,6 +1,8 @@
 extends Control
 
 func _ready():
+	if OS.get_name() == "HTML5":
+		$CanvasLayer/Margin/H/V/Exit.hide()
 	$CanvasLayer/Margin/H/V/H/Sliders/Music.value = Global.mus_vol
 	$CanvasLayer/Margin/H/V/H/Sliders/Sounds.value = Global.sfx_vol
 	Pause.disabled = true
